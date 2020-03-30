@@ -5,8 +5,25 @@
 @using TravelApi.Models;
 @model IEnumerable<TravelApi.Models.Review>
 
-<h1>Reviews</h1>
+<div class="jumbotron">
+<h2 class="display-4"> Reviews</h2>
+</div>
+@* <form asp-controller="Reviews" asp-action="Index" method="get">
+  <h2>Search by:</h2>
+<label class="col-md-2 control-label">Country:</label>
+  <div class="col-md-10">
+      <select name="Country" asp-items="ViewBag.Country" class="form-control" ></select>
+  </div> *@
 
+   @* <select asp-for="Country" name="" id=""></select>
+    @Html.DropDownList("Country", "Choose country")
+    <br>
+   <label for="City">City</label>
+    @Html.DropDownList("City", "Choose city")
+    <p>
+      <input type="submit" value="Filter" />
+    </p>
+</form> *@
 <div class='content'>
   @if(Model.Any())
   {
@@ -32,9 +49,4 @@
   {
     <h3>No reviews available</h3>
   }
-</div>
-
-<div class='links'>
-  <p>@Html.ActionLink("Add an destination", "Create")</p>
-  <p>@Html.ActionLink("Home", "Index", "Home")</p>
-</div>
+  <p>@Html.ActionLink("Add a review", "Create")</p>

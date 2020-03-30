@@ -4,12 +4,13 @@
 
 @model TravelApi.Models.Review;
 
-<h1>Add Flavor</h1>
+<h1>Add Review</h1>
 
 <div class='content'>
   @using(Html.BeginForm())
   {
     @Html.LabelFor(model => model.ReviewerName);
+     <br>
     @Html.TextBoxFor(model => model.ReviewerName);
     <br>
     <br>
@@ -18,11 +19,13 @@
     <br>
     <br>
     @Html.LabelFor(model => model.Rating);
+     <br>
     @Html.TextBoxFor(model => model.Rating);
     <br>
     <br>
     @Html.LabelFor(model => model.Description);
-    @Html.TextBoxFor(model => model.Description);
+     <br>
+    @Html.TextAreaFor(model => model.Description, new { cols = 35, @rows = 3 });
     <br>
     <br>
     <input type="submit" value="Add Review" class="btn btn-secondary" />
@@ -30,5 +33,5 @@
 </div>
 
 <div class='links'>
-  <p>@Html.ActionLink("Back to your reviews", "Index")</p>
+  <p>@Html.ActionLink("Back to your reviews", "Get")</p>
 </div>

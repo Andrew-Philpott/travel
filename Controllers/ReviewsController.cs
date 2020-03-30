@@ -26,8 +26,23 @@ namespace TravelApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Review>> Get(string country, string city, string rating)
+        public ActionResult<IEnumerable<Review>> Get(string country, string city)
         {
+            ViewBag.Country = _db.Destinations.Select(a =>
+            new SelectListItem
+            {
+                Value = a.Country,
+                Text = a.Country
+            }
+            ).OrderBy(n => n.Text);
+            ViewBag.City = _db.Destinations.Select(a =>
+           new SelectListItem
+           {
+               Value = a.City,
+               Text = a.City
+           }
+           ).OrderBy(n => n.Text);
+
             IQueryable<Destination> query = _db.Destinations.AsQueryable();
 
             if (country != null)
@@ -67,12 +82,21 @@ namespace TravelApi.Controllers
         //     review.Destination = destination;
         //     return View("Details", review);
         // }
-        // [HttpGet]
-        // public ActionResult Create()
-        // {
-        //     ViewBag.DestinationId = new SelectList(_db.Destinations, "DestinationId", "DestinationId");
-        //     return View("Create");
-        // }
+        [HttpGet("/create")]
+        public ActionResult Create()
+        {
+            var destinations = _db.Destinations.ToList();
+
+            ViewBag.DestinationId = _db.Destinations.Select(a =>
+            new SelectListItem
+            {
+                Value = a.DestinationId.ToString(),
+                Text = a.City + " (" + a.Country + ")"
+            }
+            );
+            // ViewBag.DestinationId = new SelectList(destinations, "Destin");
+            return View();
+        }
 
         // POST api/reviews
         [HttpPost]
