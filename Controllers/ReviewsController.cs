@@ -12,18 +12,18 @@ namespace TravelApi.Controllers
     public class ReviewsController : ControllerBase
     {
         // GET api/reviews
-        [HttpGet]
-        public ActionResult<IEnumerable<Review>> Get()
-        {
-            return
-        }
+        // [HttpGet]
+        // public ActionResult<IEnumerable<Review>> Get()
+        // {
+        //     // return
+        // }
 
-        // GET api/reviews/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return
-        }
+        // // GET api/reviews/5
+        // [HttpGet("{id}")]
+        // public ActionResult<string> Get(int id)
+        // {
+        //     return
+        // }
 
         // POST api/reviews
         [HttpPost]
