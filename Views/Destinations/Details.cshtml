@@ -1,0 +1,44 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TravelApi.Models.Destination;
+
+@* <h1>@Model.City, @Model.Country</h1> *@
+
+<div class='content'>
+  <h2>@($"{Model.Country}")</h2>
+  <h2>@($"{Model.City}")</h2>
+
+  @if(@Model.Reviews.Count == 0)
+  {
+    <p>No reviews are available yet for this destination</p>
+  }
+  else
+  {
+    <h4>Reviews:</h4>
+    <table>
+      <th>
+        <tr>Name</tr>
+        <tr>Description</tr>
+        <tr>Rating</tr>
+      </th>
+      @foreach(var review in Model.Reviews)
+      {
+        <td>
+          <tr>@review.ReviewerName</tr>
+          <tr>@review.Description</tr>
+          <tr>@review.Rating</tr>
+        </td>
+      }
+    </table>
+
+
+
+  }
+</div>
+
+<div class='links'>
+  <p>@Html.ActionLink("Back to all destinations", "Index")
+
+</div>

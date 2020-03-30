@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@using TravelApi.ViewModels
+
+@model LoginViewModel
+
+<div class="jumbotron">
+  <h2>Log in with your account</h2>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email)
+
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password)
+
+    <input type="submit" value="Log in" class="btn btn-secondary" />
+}
+
+<div class="footer">
+  <div class="link">
+    @Html.ActionLink("Home", "Index", "Home")
+  </div>
+</div>

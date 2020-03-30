@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TravelApi.Models.Destination;
+
+<h1>Add Destination</h1>
+
+<div class='content'>
+  @using(Html.BeginForm())
+  {
+    @Html.LabelFor(model => model.Country);
+    @Html.TextBoxFor(model => model.Country);
+    <br>
+    <br>
+    @Html.LabelFor(model => model.City);
+    @Html.TextBoxFor(model => model.City);
+    <br>
+    <br>
+    <input type="submit" value="Add Destination" class="btn btn-secondary" />
+  }
+</div>
+
+<div class='links'>
+  <p>@Html.ActionLink("Back to all destinations", "Index")</p>
+</div>

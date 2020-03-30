@@ -1,30 +1,50 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using TravelApi.Models;
+
+
+using System.Security.Claims;
 
 namespace TravelApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DestinationsController : ControllerBase
+    public class DestinationsController : Controller
     {
+        private readonly TravelApiContext _db;
+
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public DestinationsController(UserManager<ApplicationUser> userManager, TravelApiContext db)
+        {
+            _db = db;
+            _userManager = userManager;
+        }
         // GET api/destinations
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Destination>> Get()
         {
-
-            return;
+            List<Destination> destinations = _db.Destinations.ToList();
+            return View(destinations);
         }
 
         // GET api/destinations/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return;
+            Destination destination = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
+            destination.Reviews = _db.Reviews.Where(entry => entry.DestinationId == id).ToList();
+            return View();
         }
 
+        [Authorize]
         // POST api/destinations
         [HttpPost]
         public void Post([FromBody] string value)

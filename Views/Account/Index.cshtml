@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@using System.Security.Claims
+
+<div class="jumbotron">
+    <h2>Authentication with Identity</h2>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Hello @User.Identity.Name!</p>
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+        <input type="submit" class="btn btn-secondary" value="Log out" />
+    }
+}
+else
+{
+    <div class="footer">
+        <div class="link">
+            @Html.ActionLink("Register", "Register")
+        </div>
+        <div class="link">
+            @Html.ActionLink("Log in", "Login")
+        </div>
+        <div class="link">
+            @Html.ActionLink("Home", "Index", "Home")
+        </div>
+    </div>
+}
