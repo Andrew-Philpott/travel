@@ -15,6 +15,7 @@ namespace TravelApi.Models
         public string Country { get; set; }
         public string City { get; set; }
         public ICollection<Review> Reviews { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
     }
 }

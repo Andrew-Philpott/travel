@@ -16,9 +16,7 @@ namespace TravelApi
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -28,7 +26,8 @@ namespace TravelApi
             options.UseMySql(
                 Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<TravelApiContext>();
+            .AddEntityFrameworkStores<TravelApiContext>()
+            .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -56,14 +55,14 @@ namespace TravelApi
             app.UseHttpsRedirection();
 
             // app.UseHttpsRedirection();
-            app.UseMvc();
+            // app.UseMvc();
 
-            // app.UseMvc(routes =>
-            // {
-            //     routes.MapRoute(
-            //             name: "default",
-            //             template: "{controller=Home}/{action=Index}/{id?}");
-            // });
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

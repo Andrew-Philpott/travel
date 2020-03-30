@@ -6,3 +6,20 @@
   </div>
   <img src="https://www.ltteps.org/wp-content/uploads/2019/06/travel-editor-favorite-products.jpg" class="img-fluid">
 
+<div class="footer">
+  @if (User.Identity.IsAuthenticated)
+    {
+    <div class="link">
+      @Html.ActionLink("Log out", "Index", "Account")
+    </div>
+    }
+  else
+    {
+    <div class="link">
+      @Html.ActionLink("Create an account", "Register", "Account")
+    </div>
+    <div class="link">
+      @Html.ActionLink("Log in", "Login", "Account")
+    </div>
+    }
+</div>

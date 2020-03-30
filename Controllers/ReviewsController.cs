@@ -11,6 +11,7 @@ using TravelApi.Models;
 
 namespace TravelApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewsController : Controller
@@ -25,23 +26,33 @@ namespace TravelApi.Controllers
             _userManager = userManager;
         }
 
+        [AllowAnonymous]
         [HttpGet]
-        public ActionResult<IEnumerable<Review>> Get(string country, string city)
+        public ActionResult<IEnumerable<Review>> Get(string country, string city, string mostReviewed)
         {
-            ViewBag.Country = _db.Destinations.Select(a =>
+            List<SelectListItem> countries = new List<SelectListItem>();
+            countries.AddRange(_db.Destinations.Select(a =>
             new SelectListItem
             {
                 Value = a.Country,
                 Text = a.Country
             }
-            ).OrderBy(n => n.Text);
-            ViewBag.City = _db.Destinations.Select(a =>
-           new SelectListItem
-           {
-               Value = a.City,
-               Text = a.City
-           }
-           ).OrderBy(n => n.Text);
+            ).OrderBy(n => n.Text));
+            countries.Insert(0, new SelectListItem { Text = "", Value = "" });
+
+            ViewBag.Countries = countries;
+
+            List<SelectListItem> cities = new List<SelectListItem>();
+            countries.AddRange(_db.Destinations.Select(a =>
+            new SelectListItem
+            {
+                Value = a.City,
+                Text = a.City
+            }
+            ).OrderBy(n => n.Text));
+            cities.Insert(0, new SelectListItem { Text = "", Value = "" });
+
+            ViewBag.Cities = cities;
 
             IQueryable<Destination> query = _db.Destinations.AsQueryable();
 

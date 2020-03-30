@@ -1,12 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TravelApi.Models
 {
-    public class TravelApiContext : DbContext
+    public class TravelApiContext : IdentityDbContext<ApplicationUser>
     {
-        public TravelApiContext(DbContextOptions options)
-                    : base(options)
+        public TravelApiContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -14,6 +13,7 @@ namespace TravelApi.Models
         public DbSet<Review> Reviews { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.Entity<Destination>().HasData(
                 new Destination { DestinationId = 1, Country = "Italy", City = "Venice" },
                  new Destination { DestinationId = 2, Country = "Spain", City = "Madrid" },

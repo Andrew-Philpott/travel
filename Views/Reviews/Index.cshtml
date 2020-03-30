@@ -8,22 +8,31 @@
 <div class="jumbotron">
 <h2 class="display-4"> Reviews</h2>
 </div>
-@* <form asp-controller="Reviews" asp-action="Index" method="get">
-  <h2>Search by:</h2>
-<label class="col-md-2 control-label">Country:</label>
-  <div class="col-md-10">
-      <select name="Country" asp-items="ViewBag.Country" class="form-control" ></select>
-  </div> *@
 
-   @* <select asp-for="Country" name="" id=""></select>
-    @Html.DropDownList("Country", "Choose country")
-    <br>
-   <label for="City">City</label>
-    @Html.DropDownList("City", "Choose city")
-    <p>
-      <input type="submit" value="Filter" />
-    </p>
-</form> *@
+<form asp-controller="Reviews" asp-action="Index" method="get">
+  <h2>Search by:</h2>
+  <div class="row">
+    <div class="col-3">
+  <div class="form-group">
+<label class="col-md-2 control-label">Country:</label>
+  <select class="custom-select custom-select-lg mb-3" name="Country" asp-items="ViewBag.Countries"></select> 
+  </div>
+    </div>
+    <div class="col-3">
+<div class="form-group">
+    <label class="col-md-2 control-label">City:</label>
+  <select class="custom-select custom-select-lg mb-3" name="City" asp-items="ViewBag.Cities"></select> 
+  </div>
+    </div>
+    <div class="col-3">
+      <input class="btn btn-primary" type="submit" value="Search" />
+    </div>
+  </div>
+
+  
+  
+      
+</form>
 <div class='content'>
   @if(Model.Any())
   {

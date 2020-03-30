@@ -4,9 +4,12 @@
 
 #### By Andrew Philott and Andriy Veremyeyev
 
+<!-- [![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive) -->
+<!-- [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) -->
+
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-![LastCommit](https://img.shields.io/github/last-commit/tsiu88/ResourceLinks)
-![Languages](https://img.shields.io/github/languages/top/tsiu88/ResourceLinks)
+![LastCommit](https://img.shields.io/github/last-commit/Andrew-Philpott/TravelAPI)
+![Languages](https://img.shields.io/github/languages/top/Andrew-Philpott/TravelAPI)
 [![MIT license](https://img.shields.io/badge/License-MIT-orange.svg)](https://lbesson.mit-license.org/)
 
 ## Description
@@ -35,7 +38,15 @@ An API that allows users to GET and POST reviews about various travel destinatio
 | Click on treat/flavor leads treat/flavor details with possibility to edit and delete                     | treat/flavor             | treat/flavor details                |
 | Edit/delete treat/flavor leads to log in page                                                            | edit/delete treat/flavor | log in                              |
 
+## Screenshots
+
+#### Application Homepage:
+
+![Screenshot of homepage](./Screenshots/homepage.JPG/)
+
 ## Setup/Installation Requirements
+
+### Download or clone this repository
 
 ### Installing and Configuring MySQL database:
 
@@ -55,7 +66,6 @@ Option B for Windows:
 ### Installing and Configuring .NET:
 
 - Download .NET application [for Mac](https://dotnet.microsoft.com/download/dotnet-core/thank-you/sdk-2.2.106-macos-x64-installer) or [for Windows](https://dotnet.microsoft.com/download/dotnet-core/thank-you/sdk-2.2.203-windows-x64-installer) and install it
-- Download or clone this repository to your computer
 - Open terminal
 - Run "dotnet run" to run the application
 
@@ -69,12 +79,13 @@ For feedback, questions and/or ideas, please email <andrewphilpott92@gmail.com> 
 
 ## Technologies Used
 
-- HTML
-- CSS
-- .NET
+- .NET Core
 - C#
 - ASP.NET Core MVC
+- Entity Framework
 - MySQL Workbench
+- CSS
+- HTML
 
 ### License
 

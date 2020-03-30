@@ -8,18 +8,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TravelApi.Models;
-
-
 using System.Security.Claims;
 
 namespace TravelApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DestinationsController : Controller
     {
         private readonly TravelApiContext _db;
-
         private readonly UserManager<ApplicationUser> _userManager;
 
         public DestinationsController(UserManager<ApplicationUser> userManager, TravelApiContext db)
@@ -28,6 +26,7 @@ namespace TravelApi.Controllers
             _userManager = userManager;
         }
         // GET api/destinations
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<Destination>> Get()
         {
