@@ -1,0 +1,40 @@
+@{
+  Layout = "_Layout";
+}
+
+@using TravelApi.Models;
+@model IEnumerable<TravelApi.Models.Review>
+
+<h1>Reviews</h1>
+
+<div class='content'>
+  @if(Model.Any())
+  {
+    <table>
+      <th>
+        <tr>Description</tr>
+        <tr>Rating</tr>
+        <tr>Reviewer Name</tr>
+        <tr>Country, city</tr>
+      </th>
+    @foreach(Review review in Model)
+    {
+      <td>
+        <tr>@review.Description</tr>
+        <tr>@review.Rating</tr>
+        <tr>@review.ReviewerName</tr>
+        <tr>@Html.ActionLink($"{review.Destination.Country}, {review.Destination.City}", "Details","Destinations", new { id = review.DestinationId })</tr>
+      </td>
+    }
+    </table>
+  }
+  else
+  {
+    <h3>No reviews available</h3>
+  }
+</div>
+
+<div class='links'>
+  <p>@Html.ActionLink("Add an destination", "Create")</p>
+  <p>@Html.ActionLink("Home", "Index", "Home")</p>
+</div>

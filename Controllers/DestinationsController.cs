@@ -31,7 +31,7 @@ namespace TravelApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Destination>> Get()
         {
-            List<Destination> destinations = _db.Destinations.ToList();
+            IEnumerable<Destination> destinations = _db.Destinations.ToList();
             return View("Index", destinations);
         }
 

@@ -19,16 +19,16 @@
     <h4>Reviews:</h4>
     <table>
       <th>
-        <tr>Name</tr>
         <tr>Description</tr>
         <tr>Rating</tr>
+        <tr>Reviewer Name</tr>
       </th>
       @foreach(var review in Model.Reviews)
       {
         <td>
-          <tr>@review.ReviewerName</tr>
           <tr>@review.Description</tr>
           <tr>@review.Rating</tr>
+          <tr>@review.ReviewerName</tr>
         </td>
       }
     </table>
