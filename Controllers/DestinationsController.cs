@@ -32,16 +32,16 @@ namespace TravelApi.Controllers
         public ActionResult<IEnumerable<Destination>> Get()
         {
             List<Destination> destinations = _db.Destinations.ToList();
-            return View(destinations);
+            return View("Index", destinations);
         }
 
         // GET api/destinations/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Destination> Get(int id)
         {
             Destination destination = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
             destination.Reviews = _db.Reviews.Where(entry => entry.DestinationId == id).ToList();
-            return View();
+            return View("Details", destination);
         }
 
         [Authorize]
