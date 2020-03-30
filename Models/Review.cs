@@ -10,6 +10,7 @@ namespace TravelApi.Models
         public string ReviewerName { get; set; }
         public string Description { get; set; }
         public int Rating { get; set; }
+        public int DestinationId { get; set; }
         public virtual Destination Destination { get; set; }
     }
 }
