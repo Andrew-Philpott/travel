@@ -28,7 +28,7 @@ namespace TravelApi.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult<IEnumerable<Review>> Get(string country, string city, string mostReviewed)
+        public ActionResult<IEnumerable<Review>> Get(string country, string city)
         {
             List<SelectListItem> countries = new List<SelectListItem>();
             countries.AddRange(_db.Destinations.Select(a =>
@@ -43,7 +43,7 @@ namespace TravelApi.Controllers
             ViewBag.Countries = countries;
 
             List<SelectListItem> cities = new List<SelectListItem>();
-            countries.AddRange(_db.Destinations.Select(a =>
+            cities.AddRange(_db.Destinations.Select(a =>
             new SelectListItem
             {
                 Value = a.City,
