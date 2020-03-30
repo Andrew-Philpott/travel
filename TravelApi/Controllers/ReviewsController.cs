@@ -77,12 +77,13 @@ namespace TravelApi.Controllers
             return View("Index", reviews);
         }
 
-        // [HttpGet]
-        // public ActionResult<IEnumerable<Review>> Get(string reviews)
-        // {
-        //     IEnumerable<Review> reviews = _db.Reviews.ToList();
-        //     return View("Index", reviews);
-        // }
+        [HttpGet]
+        public ActionResult<IEnumerable<Review>> MostReviews()
+        {
+            //Select destination by counting the number of
+            IEnumerable<Review> reviews = _db.Reviews.ToList();
+            return View("Index", reviews);
+        }
 
         // GET api/reviews/5
         // [HttpGet("{id}")]

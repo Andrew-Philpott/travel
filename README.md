@@ -42,7 +42,7 @@ An API that allows users to GET and POST reviews about various travel destinatio
 
 #### Application Homepage:
 
-![Screenshot of homepage](./Screenshots/homepage.JPG/)
+<image src="./TravelApi.Solution/Screenshots/SearchTool.gif" width="750px" />
 
 ## Setup/Installation Requirements
 
