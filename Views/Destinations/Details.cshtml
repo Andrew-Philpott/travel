@@ -18,18 +18,18 @@
   {
     <h4>Reviews:</h4>
     <table>
-      <th>
-        <tr>Description</tr>
-        <tr>Rating</tr>
-        <tr>Reviewer Name</tr>
-      </th>
+      <tr>
+        <th>Description</th>
+        <th>Rating</th>
+        <th>Reviewer Name</th>
+      </tr>
       @foreach(var review in Model.Reviews)
       {
-        <td>
-          <tr>@review.Description</tr>
-          <tr>@review.Rating</tr>
-          <tr>@review.ReviewerName</tr>
-        </td>
+        <tr>
+          <td>@review.Description</td>
+          <td>@review.Rating</td>
+          <td>@review.ReviewerName</td>
+        </tr>
       }
     </table>
 

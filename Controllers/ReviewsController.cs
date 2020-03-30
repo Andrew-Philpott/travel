@@ -26,14 +26,8 @@ namespace TravelApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Review>> Get(string country, string city)
+        public ActionResult<IEnumerable<Review>> Get(string country, string city, string rating)
         {
-            // var reviews = (from r in _db.Reviews
-            //                join d in _db.Destinations on r.DestinationId equals d.DestinationId
-            //                select new { Review = r }).ToList();
-
-            // Destination destination = 
-
             IQueryable<Destination> query = _db.Destinations.AsQueryable();
 
             if (country != null)
@@ -44,20 +38,16 @@ namespace TravelApi.Controllers
             {
                 query = query.Where(entry => entry.City == city);
             }
+            // if (rating != null)
+            // {
+            //     query = query.Where(entry )
+            // }
+            IEnumerable<Review> reviews = (IEnumerable<Review>)(from r in _db.Reviews
+                                                                join d in query on r.DestinationId equals
+                                                  d.DestinationId
+                                                                select new Review { ReviewerName = r.ReviewerName, Rating = r.Rating, Description = r.Description, Destination = d }).ToList();
 
-            foreach (Destination item in query)
-            {
-                item.Reviews = (IEnumerable<Review>)(from r in _db.Reviews
-                                                     join d in item on r.DestinationId equals d.DestinationId
-                                                     select new Review { ReviewerName = r.ReviewerName, Rating = r.Rating, Description = r.Description }).ToList();
 
-            }
-
-            IEnumerable<Review> reviews = (from r in _db.Reviews
-                                           join d in _db.Destinations on r.DestinationId equals d.DestinationId
-                                           select new { Review = r }).ToList();
-
-            IEnumerable<Review> reviews = _db.Reviews.ToList();
             return View("Index", reviews);
         }
 
@@ -69,20 +59,20 @@ namespace TravelApi.Controllers
         // }
 
         // GET api/reviews/5
-        [HttpGet("{id}")]
-        public ActionResult<Review> Get(int id)
-        {
-            Review review = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
-            Destination destination = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == review.DestinationId);
-            review.Destination = destination;
-            return View("Details", review);
-        }
-        [HttpGet]
-        public ActionResult Create()
-        {
-            ViewBag.DestinationId = new SelectList(_db.Destinations, "DestinationId", "DestinationId");
-            return View("Create");
-        }
+        // [HttpGet("{id}")]
+        // public ActionResult<Review> Get(int id)
+        // {
+        //     Review review = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
+        //     Destination destination = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == review.DestinationId);
+        //     review.Destination = destination;
+        //     return View("Details", review);
+        // }
+        // [HttpGet]
+        // public ActionResult Create()
+        // {
+        //     ViewBag.DestinationId = new SelectList(_db.Destinations, "DestinationId", "DestinationId");
+        //     return View("Create");
+        // }
 
         // POST api/reviews
         [HttpPost]

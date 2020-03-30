@@ -10,21 +10,21 @@
 <div class='content'>
   @if(Model.Any())
   {
-    <table>
-      <th>
-        <tr>Description</tr>
-        <tr>Rating</tr>
-        <tr>Reviewer Name</tr>
-        <tr>Country, city</tr>
-      </th>
+    <table class="table table-striped">
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Reviewer Name</th>
+        <th scope="col">Country, City</th>
+      </tr>
     @foreach(Review review in Model)
     {
-      <td>
-        <tr>@review.Description</tr>
-        <tr>@review.Rating</tr>
-        <tr>@review.ReviewerName</tr>
-        <tr>@Html.ActionLink($"{review.Destination.Country}, {review.Destination.City}", "Details","Destinations", new { id = review.DestinationId })</tr>
-      </td>
+      <tr>
+        <td>@review.Description</td>
+        <td>@review.Rating</td>
+        <td>@review.ReviewerName</td>
+        <td>@Html.ActionLink($"{review.Destination.Country}, {review.Destination.City}", "Details","Destinations", new { id = review.DestinationId })</td>
+      </tr>
     }
     </table>
   }
