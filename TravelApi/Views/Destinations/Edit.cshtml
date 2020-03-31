@@ -5,13 +5,12 @@
 @model TravelApi.Models.Destination;
 
 <div class="jumbotron">
-    <h2 class="display-4"> Edit Destination</h2>
+    <h2 class="display-4"> Edit: @Html.DisplayTextFor(model => model.City), @Html.DisplayTextFor(model => model.Country)</h2>
 </div>
-
+<form asp-action="Put" asp-controller="Destinations" method="post">
 <div class='content'>
- @using (Html.BeginForm())
-  {
     @Html.HiddenFor(model => model.DestinationId)
+    @Html.LabelFor(model => model.Country)
     <br>
     @Html.TextBoxFor(model => model.Country)
     <br>
@@ -21,9 +20,10 @@
     @Html.TextBoxFor(model => model.City)
     <br>
     <br>
-    <input type="submit" value="Edit" class="btn btn-secondary" />
-  }
+    <input type="submit" value="Edit" class="btn btn-secondary" asp/>
 </div>
+</form>
+
 
 <div class='links'>
   <p>@Html.ActionLink("Back to all destinations", "Index")</p>

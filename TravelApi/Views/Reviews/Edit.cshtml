@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TravelApi.Models.Review;
+
+<div class="jumbotron">
+    <h2 class="display-4"> Edit review</h2>
+</div>
+
+<div class='content'>
+<form asp-action="Put" asp-controller="Reviews" method="post">
+    @Html.HiddenFor(model => model.ReviewId)
+    @Html.LabelFor(model => model.ReviewerName)
+    <br>
+    @Html.TextBoxFor(model => model.ReviewerName)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.Description)
+    <br>
+    @Html.TextAreaFor(model => model.Description)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.Rating)
+    <br>
+    @Html.TextBoxFor(model => model.Rating)
+    <br>
+    <br>
+    <input type="submit" value="Edit" class="btn btn-secondary" />
+  </form>
+</div>
+
+<div class='links'>
+  <p>@Html.ActionLink("Back to all reviews", "Index")</p>
+</div>

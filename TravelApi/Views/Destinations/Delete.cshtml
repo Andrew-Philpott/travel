@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TravelApi.Models.Destination;
+
+<div class="jumbotron">
+    <h2 class="display-4"> Are you sure you want to delete: @Html.DisplayTextFor(model => model.City), @Html.DisplayTextFor(model => model.Country)</h2>
+</div>
+
+<div class='content'>
+<form asp-action="Delete" asp-controller="Destinations" method="post">
+    @Html.HiddenFor(model => model.DestinationId)
+    <br>
+    <input type="submit" value="Delete" class="btn btn-secondary" />
+  </form>
+</div>
+
+<div class='links'>
+  <p>@Html.ActionLink("Back to all destinations", "Index")</p>
+</div>

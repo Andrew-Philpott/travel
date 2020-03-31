@@ -6,8 +6,11 @@
 
 @* <h1>@Model.City, @Model.Country</h1> *@
 
+<div class="jumbotron">
+    <h2 class="display-4">@($"{Model.City}"), @($"{Model.Country}")</h2>
+</div>
+
 <div class='content'>
-  <h2>@($"{Model.City}"), @($"{Model.Country}")</h2>
 
   @if(@Model.Reviews.Count == 0)
   {
@@ -34,7 +37,8 @@
   }
 </div>
 
-<div class='links'>
+<div class="footer">
   <p>@Html.ActionLink("Back to all destinations", "Index")
-
+  <div>@Html.ActionLink("Edit destination", "Edit", new {id = Model.DestinationId})</div>
+  <div>@Html.ActionLink("Delete destination", "Delete", new {id = Model.DestinationId})</div>
 </div>

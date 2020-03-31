@@ -60,7 +60,7 @@ namespace TravelApi.Controllers
             }
             return View("Index", reviews);
         }
-
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<Review> Get(int id)
         {
@@ -86,7 +86,6 @@ namespace TravelApi.Controllers
             return View();
         }
 
-        [Authorize]
         // POST api/reviews
         [HttpPost]
         public void Post([FromForm] Review review)

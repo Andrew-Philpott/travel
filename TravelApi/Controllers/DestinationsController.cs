@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using TravelApi.Models;
 using System.Security.Claims;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace TravelApi.Controllers
 {
@@ -71,30 +72,17 @@ namespace TravelApi.Controllers
         }
 
         [HttpGet("/destinations/create")]
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
 
-        // [AllowAnonymous]
-        // [HttpGet("mostreviewed")]
-        // public ActionResult<IEnumerable<Destination>> HighestRated()
-        // {
-        //     var mostReviewedDestination = _db.Reviews
-        //         .GroupBy(review => review.DestinationId)
-        //         .Select(group => new { DestinationId = group.Key, Count = group.Count() })
-        //         .OrderBy(x => x.DestinationId)
-        //         .FirstOrDefault();
-
-        //     Destination destination = _db.Destinations.FirstOrDefault(n => n.DestinationId == mostReviewedDestination.DestinationId);
-
-        //     List<Review> reviews = _db.Reviews.Where(entry => entry.DestinationId == destination.DestinationId).ToList();
-
-        //     destination.Reviews = reviews;
-
-        //     return View("Details", destination);
-        // }
-
+        [HttpGet("/destinations/edit/{id}")]
+        public IActionResult Edit(int id)
+        {
+            Destination destination = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
+            return View(destination);
+        }
 
         [AllowAnonymous]
         // GET api/destinations/5
@@ -106,7 +94,6 @@ namespace TravelApi.Controllers
             return View("Details", destination);
         }
 
-        [Authorize]
         // POST api/destinations
         [HttpPost]
         public async Task<ActionResult> Post([FromForm] Destination destination)
@@ -120,21 +107,29 @@ namespace TravelApi.Controllers
         }
 
         // PUT api/destinations/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Destination destination)
+        [HttpPatch]
+        public ActionResult Patch(int id, [FromBody] JsonPatchDocument<Destination> destination)
         {
-            destination.DestinationId = id;
-            _db.Entry(destination).State = EntityState.Modified;
-            _db.SaveChanges();
+            if (destination != null)
+            {
+                var dest = new Destination();
+
+                destination.ApplyTo(dest, ModelState);
+                _db.Entry(dest).State = EntityState.Modified;
+                _db.SaveChanges();
+                return RedirectToAction("Get");
+            }
+            return RedirectToAction("Get");
         }
 
         // DELETE api/destinations/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
         {
-            var destinationToDelete = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
+            Destination destinationToDelete = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
             _db.Destinations.Remove(destinationToDelete);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
+            return View("Index");
         }
     }
 }
