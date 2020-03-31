@@ -6,12 +6,30 @@
 @model IEnumerable<TravelApi.Models.Review>
 
 <div class="jumbotron">
-<h2 class="display-4"> Reviews</h2>
+    <h2 class="display-4"> Reviews</h2>
 </div>
 
-<form asp-controller="Reviews" asp-action="get" method="get">
-  <h2>Search by:</h2>
-  <div class="row">
+@* <form asp-controller="Reviews" asp-action="get" method="get"> *@
+  
+  <div class="searchheader">
+    <div class="search">
+        <h2>Search Reviews</h2>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+      <form asp-controller="Reviews" asp-action="get" method="get"asp-controller="Reviews" asp-action="get" method="get" class="form-inline my-2 my-lg-0">
+          <input name="searchString" class="form-control mr-sm-2" type="search" placeholder="Seattle, Washington" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+ <br>
+ 
+@*  
+ <div class="row">
     <div class="col-3">
   <div class="form-group">
 <label class="col-md-2 control-label">Country:</label>
@@ -28,31 +46,25 @@
       <input class="btn btn-primary" type="submit" value="Search" />
     </div>
   </div>
- <form asp-controller="Reviews" asp-action="MostReviews" method="get">
-   <input class="btn btn-primary" type="submit" value="Most Reviewed" />
- </form>
+</form> *@
 
-  
-  
-      
-</form>
 <div class='content'>
   @if(Model.Any())
   {
     <table class="table table-striped">
       <tr>
+        <th scope="col">City, Country</th>
         <th scope="col">Description</th>
         <th scope="col">Rating</th>
-        <th scope="col">Reviewer Name</th>
-        <th scope="col">Country, City</th>
+        <th scope="col">Reviewer</th>
       </tr>
     @foreach(Review review in Model)
     {
       <tr>
+        <td>@Html.ActionLink($"{review.Destination.City}, {review.Destination.Country}", "Get","Destinations", new { id = review.DestinationId })</td>
         <td>@review.Description</td>
         <td>@review.Rating</td>
         <td>@review.ReviewerName</td>
-        <td>@Html.ActionLink($"{review.Destination.Country}, {review.Destination.City}", "Details","Destinations", new { id = review.DestinationId })</td>
       </tr>
     }
     </table>

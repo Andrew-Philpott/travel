@@ -1,4 +1,4 @@
-# Traver Reviews
+# Traveler Reviews
 
 #### Travel Reviews project for Epicodus, 03/30/2020
 
@@ -40,7 +40,7 @@ An API that allows users to GET and POST reviews about various travel destinatio
 
 ## Screenshots
 
-#### Application Homepage:
+#### Search Module:
 
 <image src="./TravelApi.Solution/Screenshots/SearchTool.gif" width="750px" />
 

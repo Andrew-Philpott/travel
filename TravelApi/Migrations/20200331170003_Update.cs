@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace travelapi.Migrations
 {
-    public partial class Identity : Migration
+    public partial class Update : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -210,10 +210,13 @@ namespace travelapi.Migrations
                 {
                     { 1, "Venice", "Italy", null },
                     { 2, "Madrid", "Spain", null },
-                    { 3, "Berin", "Germany", null },
-                    { 4, "Lagos", "Africa", null },
+                    { 3, "Berlin", "Germany", null },
+                    { 4, "Lagos", "Nigeria", null },
                     { 5, "Washington", "United States", null },
-                    { 6, "Paris", "France", null }
+                    { 6, "Paris", "France", null },
+                    { 7, "Paris", "United States", null },
+                    { 8, "Berlin", "United States", null },
+                    { 9, "Kyiv", "Ukraine", null }
                 });
 
             migrationBuilder.InsertData(
@@ -222,11 +225,16 @@ namespace travelapi.Migrations
                 values: new object[,]
                 {
                     { 1, "Awesome place", 1, 5, "Andriy", null },
+                    { 8, "Weather could be better", 1, 4, "Krista", null },
                     { 2, "Better places", 2, 3, "Andriy", null },
                     { 3, "Great except for...", 3, 4, "Andrew", null },
-                    { 4, "Awesome place", 3, 5, "Andrew", null },
+                    { 4, "Awesome place", 3, 4, "Andrew", null },
                     { 5, "Awesome place", 4, 5, "Andriy", null },
-                    { 6, "Awesome place", 5, 5, "Andriy", null }
+                    { 6, "A lot of museums", 5, 4, "Andriy", null },
+                    { 7, "City with great history", 5, 5, "Adela", null },
+                    { 9, "Nice place to live", 5, 4, "Tiffany", null },
+                    { 10, "Missing California", 5, 3, "Steven", null },
+                    { 11, "Far from ocean", 5, 2, "Jack", null }
                 });
 
             migrationBuilder.CreateIndex(

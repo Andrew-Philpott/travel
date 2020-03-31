@@ -8,18 +8,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TravelApi.Models;
+using System.Text.RegularExpressions;
 
 namespace TravelApi.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ReviewsController : Controller
     {
         private readonly TravelApiContext _db;
-
         private readonly UserManager<ApplicationUser> _userManager;
-
         public ReviewsController(UserManager<ApplicationUser> userManager, TravelApiContext db)
         {
             _db = db;
@@ -28,72 +27,72 @@ namespace TravelApi.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult<IEnumerable<Review>> Get(string country, string city)
+        public ActionResult<IEnumerable<Review>> Get(string searchString)
         {
-            List<SelectListItem> countries = new List<SelectListItem>();
-            countries.AddRange(_db.Destinations.Select(a =>
-            new SelectListItem
+            Console.WriteLine(searchString);
+            List<Review> reviews = null;
+            if (searchString != null)
             {
-                Value = a.Country,
-                Text = a.Country
+                IQueryable<Destination> query = _db.Destinations.AsQueryable();
+                string removeWhiteSpace = Regex.Replace(searchString, @"\s+", "");
+                string[] filters = removeWhiteSpace.Split(",");
+
+                for (int i = 0; i < filters.Length; i++)
+                {
+                    Console.WriteLine(filters[i]);
+                    query.ToString();
+                    if (i == 0)
+                    {
+                        query = query.Where(entry => entry.City == filters[0]);
+                    }
+                    else
+                    {
+                        query = query.Where(entry => entry.Country == filters[i]);
+                    }
+                }
+                reviews = (List<Review>)(from r in _db.Reviews
+                                         join d in query on r.DestinationId equals d.DestinationId
+                                         select new Review { ReviewerName = r.ReviewerName, Rating = r.Rating, Description = r.Description, DestinationId = r.DestinationId, Destination = new Destination { Country = d.Country, City = d.City } }).ToList();
             }
-            ).OrderBy(n => n.Text));
-            countries.Insert(0, new SelectListItem { Text = "", Value = "" });
-
-            ViewBag.Countries = countries;
-
-            List<SelectListItem> cities = new List<SelectListItem>();
-            cities.AddRange(_db.Destinations.Select(a =>
-            new SelectListItem
+            else
             {
-                Value = a.City,
-                Text = a.City
+                IQueryable<Destination> query = _db.Destinations.AsQueryable();
+                reviews = (List<Review>)(from r in _db.Reviews
+                                         join d in query on r.DestinationId equals d.DestinationId
+                                         select new Review { ReviewerName = r.ReviewerName, Rating = r.Rating, Description = r.Description, DestinationId = r.DestinationId, Destination = new Destination { Country = d.Country, City = d.City } }).ToList();
             }
-            ).OrderBy(n => n.Text));
-            cities.Insert(0, new SelectListItem { Text = "", Value = "" });
-
-            ViewBag.Cities = cities;
-
-            IQueryable<Destination> query = _db.Destinations.AsQueryable();
-
-            if (country != null)
-            {
-                query = query.Where(entry => entry.Country == country);
-            }
-            if (city != null)
-            {
-                query = query.Where(entry => entry.City == city);
-            }
-            // if (rating != null)
+            // if (country != null)
             // {
-            //     query = query.Where(entry )
+            //     query = query.Where(entry => entry.Country == country);
             // }
-            IEnumerable<Review> reviews = (IEnumerable<Review>)(from r in _db.Reviews
-                                                                join d in query on r.DestinationId equals
-                                                  d.DestinationId
-                                                                select new Review { ReviewerName = r.ReviewerName, Rating = r.Rating, Description = r.Description, Destination = d }).ToList();
+            // if (city != null)
+            // {
+            //     query = query.Where(entry => entry.City == city);
+            // }
+
 
 
             return View("Index", reviews);
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Review>> MostReviews()
-        {
-            //Select destination by counting the number of
-            IEnumerable<Review> reviews = _db.Reviews.ToList();
-            return View("Index", reviews);
-        }
-
-        // GET api/reviews/5
-        // [HttpGet("{id}")]
-        // public ActionResult<Review> Get(int id)
+        // [HttpGet]
+        // public ActionResult<IEnumerable<Review>> MostReviews()
         // {
-        //     Review review = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
-        //     Destination destination = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == review.DestinationId);
-        //     review.Destination = destination;
-        //     return View("Details", review);
+        //     //Select destination by counting the number of
+        //     //
+        //     IEnumerable<Review> reviews = _db.Reviews.ToList();
+        //     return View("Index", reviews);
         // }
+
+        [HttpGet("{id}")]
+        public ActionResult<Review> Get(int id)
+        {
+            Review review = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
+            Destination destination = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == review.DestinationId);
+            review.Destination = destination;
+            return View("Details", review);
+        }
+
         [HttpGet("/create")]
         public ActionResult Create()
         {

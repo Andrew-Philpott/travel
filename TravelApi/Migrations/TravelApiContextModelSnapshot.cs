@@ -246,14 +246,14 @@ namespace travelapi.Migrations
                         new
                         {
                             DestinationId = 3,
-                            City = "Berin",
+                            City = "Berlin",
                             Country = "Germany"
                         },
                         new
                         {
                             DestinationId = 4,
                             City = "Lagos",
-                            Country = "Africa"
+                            Country = "Nigeria"
                         },
                         new
                         {
@@ -266,6 +266,24 @@ namespace travelapi.Migrations
                             DestinationId = 6,
                             City = "Paris",
                             Country = "France"
+                        },
+                        new
+                        {
+                            DestinationId = 7,
+                            City = "Paris",
+                            Country = "United States"
+                        },
+                        new
+                        {
+                            DestinationId = 8,
+                            City = "Berlin",
+                            Country = "United States"
+                        },
+                        new
+                        {
+                            DestinationId = 9,
+                            City = "Kyiv",
+                            Country = "Ukraine"
                         });
                 });
 
@@ -328,7 +346,7 @@ namespace travelapi.Migrations
                             ReviewId = 4,
                             Description = "Awesome place",
                             DestinationId = 3,
-                            Rating = 5,
+                            Rating = 4,
                             ReviewerName = "Andrew"
                         },
                         new
@@ -342,10 +360,50 @@ namespace travelapi.Migrations
                         new
                         {
                             ReviewId = 6,
-                            Description = "Awesome place",
+                            Description = "A lot of museums",
+                            DestinationId = 5,
+                            Rating = 4,
+                            ReviewerName = "Andriy"
+                        },
+                        new
+                        {
+                            ReviewId = 7,
+                            Description = "City with great history",
                             DestinationId = 5,
                             Rating = 5,
-                            ReviewerName = "Andriy"
+                            ReviewerName = "Adela"
+                        },
+                        new
+                        {
+                            ReviewId = 8,
+                            Description = "Weather could be better",
+                            DestinationId = 1,
+                            Rating = 4,
+                            ReviewerName = "Krista"
+                        },
+                        new
+                        {
+                            ReviewId = 9,
+                            Description = "Nice place to live",
+                            DestinationId = 5,
+                            Rating = 4,
+                            ReviewerName = "Tiffany"
+                        },
+                        new
+                        {
+                            ReviewId = 10,
+                            Description = "Missing California",
+                            DestinationId = 5,
+                            Rating = 3,
+                            ReviewerName = "Steven"
+                        },
+                        new
+                        {
+                            ReviewId = 11,
+                            Description = "Far from ocean",
+                            DestinationId = 5,
+                            Rating = 2,
+                            ReviewerName = "Jack"
                         });
                 });
 

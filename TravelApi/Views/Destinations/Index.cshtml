@@ -5,20 +5,58 @@
 @using TravelApi.Models;
 @model IEnumerable<TravelApi.Models.Destination>
 
-<h1>Destinations</h1>
- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+<div class="jumbotron">
+    <h2 class="display-4"> Destinations</h2>
+</div>
+
+ <div class="searchheader">
+    <div class="search">
+        <h4>Search Destinations</h4>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+      <form asp-controller="Reviews" asp-action="get" method="get"asp-controller="Reviews" asp-action="get" method="get" class="form-inline my-2 my-lg-0">
+          <input name="searchString" class="form-control mr-sm-2" type="search" placeholder="Seattle, Washington" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="searchheaderbuttons">
+       <form asp-controller="Destinations" asp-action="Get" method="get">
+         <input name="searchString" type="hidden" value="review">
+        <input class="btn btn-primary" type="submit" value="Most Reviewed" />
+      </form>
+    </div>
+    <div class="searchheaderbuttons">
+       <form asp-controller="Destinations" asp-action="Get" method="get">
+         <input name="searchString" type="hidden" value="rating">
+        <input class="btn btn-primary" type="submit" value="Highest Rated" />
+      </form>
+    </div>
+  </div>
+ <br>
 <div class='content'>
   @if(Model.Any())
   {
-    <ul>
-    @foreach(Destination destination in Model)
-    {
-      <li>@Html.ActionLink($"{destination.Country}, {destination.City}", "Details", new { id = destination.DestinationId })</li>
-    }
-    </ul>
+    int j = 0;
+    <table class="table table-striped">
+      <tr>
+        <th>№</th>
+        <th>City</th>
+        <th>Country</th>
+      </tr>
+      @foreach (Destination destination in Model)
+      {
+        j++;
+        <tr>
+          <td>@j</td>
+          <td>@Html.ActionLink($"{destination.City}",  "Details", new { id = destination.DestinationId })</td>
+          <td>@destination.Country</td>
+        </tr>
+      }
+    </table>
   }
   else
   {
@@ -26,7 +64,6 @@
   }
 </div>
 
-<div class='links'>
+<div class='footer'>
   <p>@Html.ActionLink("Add an destination", "Create")</p>
-  <p>@Html.ActionLink("Home", "Index", "Home")</p>
 </div>

@@ -20581,6 +20581,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelApi\\Views\\Destinations\\MostReviewed.cshtml",
+      "TargetPath": "Views\\Destinations\\MostReviewed.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelApi\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
