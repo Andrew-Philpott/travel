@@ -21,7 +21,6 @@ namespace TravelApi.Models
                 new Destination { DestinationId = 4, Country = "Nigeria", City = "Lagos" },
                 new Destination { DestinationId = 5, Country = "United States", City = "Washington" },
                 new Destination { DestinationId = 6, Country = "France", City = "Paris" },
-
                 new Destination { DestinationId = 7, Country = "United States", City = "Paris" },
                 new Destination { DestinationId = 8, Country = "United States", City = "Berlin" },
                 new Destination { DestinationId = 9, Country = "Ukraine", City = "Kyiv" }

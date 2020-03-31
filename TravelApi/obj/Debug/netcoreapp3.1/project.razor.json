@@ -20581,6 +20581,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelApi\\Views\\Destinations\\Delete.cshtml",
+      "TargetPath": "Views\\Destinations\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelApi\\Views\\Destinations\\Edit.cshtml",
+      "TargetPath": "Views\\Destinations\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelApi\\Views\\Destinations\\MostReviewed.cshtml",
       "TargetPath": "Views\\Destinations\\MostReviewed.cshtml",
       "FileKind": "mvc"

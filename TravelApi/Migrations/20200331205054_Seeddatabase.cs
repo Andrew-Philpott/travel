@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace travelapi.Migrations
 {
-    public partial class Update : Migration
+    public partial class Seeddatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -234,7 +234,9 @@ namespace travelapi.Migrations
                     { 7, "City with great history", 5, 5, "Adela", null },
                     { 9, "Nice place to live", 5, 4, "Tiffany", null },
                     { 10, "Missing California", 5, 3, "Steven", null },
-                    { 11, "Far from ocean", 5, 2, "Jack", null }
+                    { 11, "Far from ocean", 5, 2, "Jack", null },
+                    { 12, "Best city in Texas", 7, 4, "Jiwon", null },
+                    { 13, "Actually we call it New Berlin", 8, 3, "Leilani", null }
                 });
 
             migrationBuilder.CreateIndex(

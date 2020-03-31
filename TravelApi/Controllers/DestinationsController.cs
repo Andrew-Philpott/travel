@@ -38,22 +38,42 @@ namespace TravelApi.Controllers
                 var mostReviewedDestination = _db.Reviews
                     .GroupBy(review => review.DestinationId)
                     .Select(group => new { DestinationId = group.Key, Count = group.Count() })
-                    .OrderByDescending(x => x.DestinationId);
+                    .OrderByDescending(x => x.Count);
+                Console.WriteLine();
+                foreach (var item in mostReviewedDestination)
+                {
+                    Console.WriteLine(item.DestinationId + " " + item.Count);
+                }
 
-                query = (from mrd in mostReviewedDestination
-                         join m in _db.Destinations
-on mrd.DestinationId equals m.DestinationId
-                         select new Destination { DestinationId = m.DestinationId, Country = m.Country, City = m.City }).ToList();
-
-                return View("MostReviewed", query);
+                query = (from mrd in _db.Destinations
+                         join m in mostReviewedDestination
+                         on mrd.DestinationId equals m.DestinationId
+                         orderby m.Count descending
+                         select new Destination { DestinationId = m.DestinationId, Country = mrd.Country, City = mrd.City }).ToList();
             }
             else if (searchString == "rating")
             {
+                var ratings = _db.Reviews
+                  .GroupBy(review => review.DestinationId)
+                  .Select(group => new { DestinationId = group.Key, Average = (_db.Reviews.Where(x => x.DestinationId == group.Key).Average(x => x.Rating)) })
+                  .OrderByDescending(x => x.Average);
 
+                query = (from d in ratings
+                         join dr in _db.Destinations on d.DestinationId equals dr.DestinationId
+                         select new Destination { DestinationId = d.DestinationId, Country = dr.Country, City = dr.City }
+                         ).ToList();
             }
-
-            query = _db.Destinations.ToList();
+            else
+            {
+                query = _db.Destinations.ToList();
+            }
             return View("Index", query);
+        }
+
+        [HttpGet("/destinations/create")]
+        public ActionResult Create()
+        {
+            return View();
         }
 
         // [AllowAnonymous]
@@ -89,20 +109,32 @@ on mrd.DestinationId equals m.DestinationId
         [Authorize]
         // POST api/destinations
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult> Post([FromForm] Destination destination)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            destination.User = currentUser;
+            _db.Destinations.Add(destination);
+            _db.SaveChanges();
+            return RedirectToAction("Get");
         }
 
         // PUT api/destinations/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Destination destination)
         {
+            destination.DestinationId = id;
+            _db.Entry(destination).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         // DELETE api/destinations/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var destinationToDelete = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
+            _db.Destinations.Remove(destinationToDelete);
+            _db.SaveChanges();
         }
     }
 }

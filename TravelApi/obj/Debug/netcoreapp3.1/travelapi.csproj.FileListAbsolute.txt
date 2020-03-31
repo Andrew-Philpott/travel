@@ -143,3 +143,5 @@ C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\ob
 C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\obj\Debug\netcoreapp3.1\travelapi.genruntimeconfig.cache
 C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\obj\Debug\netcoreapp3.1\Razor\Views\Reviews\Index.cshtml.g.cs
 C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\obj\Debug\netcoreapp3.1\Razor\Views\Destinations\MostReviewed.cshtml.g.cs
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\obj\Debug\netcoreapp3.1\Razor\Views\Destinations\Delete.cshtml.g.cs
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\obj\Debug\netcoreapp3.1\Razor\Views\Destinations\Edit.cshtml.g.cs

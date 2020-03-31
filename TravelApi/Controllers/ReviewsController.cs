@@ -34,20 +34,17 @@ namespace TravelApi.Controllers
             if (searchString != null)
             {
                 IQueryable<Destination> query = _db.Destinations.AsQueryable();
-                string removeWhiteSpace = Regex.Replace(searchString, @"\s+", "");
-                string[] filters = removeWhiteSpace.Split(",");
-
-                for (int i = 0; i < filters.Length; i++)
+                string[] filters = searchString.Split(",").Select(x => x.Trim()).ToArray();
+                if (filters.Length == 2)
                 {
-                    Console.WriteLine(filters[i]);
-                    query.ToString();
-                    if (i == 0)
+                    query = query.Where(entry => entry.City == filters[0] && entry.Country == filters[1]);
+                }
+                else
+                {
+                    query = query.Where(entry => entry.City == filters[0]);
+                    if (query.Count() == 0)
                     {
-                        query = query.Where(entry => entry.City == filters[0]);
-                    }
-                    else
-                    {
-                        query = query.Where(entry => entry.Country == filters[i]);
+                        query = _db.Destinations.Where(entry => entry.Country == filters[0]);
                     }
                 }
                 reviews = (List<Review>)(from r in _db.Reviews
@@ -61,28 +58,8 @@ namespace TravelApi.Controllers
                                          join d in query on r.DestinationId equals d.DestinationId
                                          select new Review { ReviewerName = r.ReviewerName, Rating = r.Rating, Description = r.Description, DestinationId = r.DestinationId, Destination = new Destination { Country = d.Country, City = d.City } }).ToList();
             }
-            // if (country != null)
-            // {
-            //     query = query.Where(entry => entry.Country == country);
-            // }
-            // if (city != null)
-            // {
-            //     query = query.Where(entry => entry.City == city);
-            // }
-
-
-
             return View("Index", reviews);
         }
-
-        // [HttpGet]
-        // public ActionResult<IEnumerable<Review>> MostReviews()
-        // {
-        //     //Select destination by counting the number of
-        //     //
-        //     IEnumerable<Review> reviews = _db.Reviews.ToList();
-        //     return View("Index", reviews);
-        // }
 
         [HttpGet("{id}")]
         public ActionResult<Review> Get(int id)
@@ -109,22 +86,32 @@ namespace TravelApi.Controllers
             return View();
         }
 
+        [Authorize]
         // POST api/reviews
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromForm] Review review)
         {
+            _db.Reviews.Add(review);
+            _db.SaveChanges();
+            RedirectToAction("Get");
         }
 
         // PUT api/reviews/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Review review)
         {
+            review.ReviewId = id;
+            _db.Entry(review).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         // DELETE api/reviews/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var reviewToDelete = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
+            _db.Reviews.Remove(reviewToDelete);
+            _db.SaveChanges();
         }
     }
 }

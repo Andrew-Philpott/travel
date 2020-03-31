@@ -404,6 +404,22 @@ namespace travelapi.Migrations
                             DestinationId = 5,
                             Rating = 2,
                             ReviewerName = "Jack"
+                        },
+                        new
+                        {
+                            ReviewId = 12,
+                            Description = "Best city in Texas",
+                            DestinationId = 7,
+                            Rating = 4,
+                            ReviewerName = "Jiwon"
+                        },
+                        new
+                        {
+                            ReviewId = 13,
+                            Description = "Actually we call it New Berlin",
+                            DestinationId = 8,
+                            Rating = 3,
+                            ReviewerName = "Leilani"
                         });
                 });
 
