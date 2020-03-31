@@ -38,7 +38,12 @@
 </div>
 
 <div class="footer">
-  <p>@Html.ActionLink("Back to all destinations", "Index")
+  <div>@Html.ActionLink("Back to all destinations", "Index")</div>
   <div>@Html.ActionLink("Edit destination", "Edit", new {id = Model.DestinationId})</div>
-  <div>@Html.ActionLink("Delete destination", "Delete", new {id = Model.DestinationId})</div>
+  <div>
+        @using (Html.BeginForm("Delete", "Destinations", new {id = Model.DestinationId}))
+    {
+        <input type="submit" value="Delete" class='btn'/>
+    }
+  </div>
 </div>

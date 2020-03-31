@@ -7,7 +7,7 @@
 <div class="jumbotron">
     <h2 class="display-4"> Edit: @Html.DisplayTextFor(model => model.City), @Html.DisplayTextFor(model => model.Country)</h2>
 </div>
-<form asp-action="Put" asp-controller="Destinations" method="post">
+<form asp-action="Patch" asp-controller="Destinations" method="post">
 <div class='content'>
     @Html.HiddenFor(model => model.DestinationId)
     @Html.LabelFor(model => model.Country)
@@ -20,7 +20,7 @@
     @Html.TextBoxFor(model => model.City)
     <br>
     <br>
-    <input type="submit" value="Edit" class="btn btn-secondary" asp/>
+    <input asp-action="Patch" asp-controller="Destinations" type="submit" value="Edit" class="btn btn-secondary" asp/>
 </div>
 </form>
 

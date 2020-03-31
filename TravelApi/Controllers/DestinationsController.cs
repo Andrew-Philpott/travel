@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace TravelApi.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class DestinationsController : Controller
@@ -108,7 +107,7 @@ namespace TravelApi.Controllers
 
         // PUT api/destinations/5
         [HttpPatch]
-        public ActionResult Patch(int id, [FromBody] JsonPatchDocument<Destination> destination)
+        public ActionResult Patch(int id, [FromForm] JsonPatchDocument<Destination> destination)
         {
             if (destination != null)
             {
@@ -123,10 +122,12 @@ namespace TravelApi.Controllers
         }
 
         // DELETE api/destinations/5
-        [HttpDelete]
+        [HttpPost("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            Destination destinationToDelete = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
+            var destinationToDelete = await _db.Destinations.FirstOrDefaultAsync(entry => entry.DestinationId == id);
+
+            // FirstOrDefault(entry => entry.DestinationId == id);
             _db.Destinations.Remove(destinationToDelete);
             await _db.SaveChangesAsync();
             return View("Index");
