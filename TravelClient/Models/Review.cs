@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace TravelApi.Models
+namespace TravelClient.Models
 {
     public class Review
     {

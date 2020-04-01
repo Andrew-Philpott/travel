@@ -1,26 +1,26 @@
-using System.IO;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
+// using System.IO;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.EntityFrameworkCore.Design;
+// using Microsoft.Extensions.Configuration;
 
-namespace TravelApi.Models
-{
-    public class TravelApiContextFactory : IDesignTimeDbContextFactory<TravelApiContext>
-    {
+// namespace TravelClient.Models
+// {
+//     public class TravelApiContextFactory : IDesignTimeDbContextFactory<TravelApiContext>
+//     {
 
-        TravelApiContext IDesignTimeDbContextFactory<TravelApiContext>.CreateDbContext(string[] args)
-        {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-              .SetBasePath(Directory.GetCurrentDirectory())
-              .AddJsonFile("appsettings.json")
-              .Build();
+//         TravelApiContext IDesignTimeDbContextFactory<TravelApiContext>.CreateDbContext(string[] args)
+//         {
+//             IConfigurationRoot configuration = new ConfigurationBuilder()
+//               .SetBasePath(Directory.GetCurrentDirectory())
+//               .AddJsonFile("appsettings.json")
+//               .Build();
 
-            var builder = new DbContextOptionsBuilder<TravelApiContext>();
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+//             var builder = new DbContextOptionsBuilder<TravelApiContext>();
+//             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            builder.UseMySql(connectionString);
+//             builder.UseMySql(connectionString);
 
-            return new TravelApiContext(builder.Options);
-        }
-    }
-}
+//             return new TravelApiContext(builder.Options);
+//         }
+//     }
+// }

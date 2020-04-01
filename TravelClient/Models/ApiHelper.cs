@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using RestSharp;
-namespace TravelApi.Models
+namespace TravelClient.Models
 {
     class ApiHelper
     {
         public static async Task<string> GetAll()
         {
-            RestClient client = new RestClient("https://localhost:5005/api");
+            RestClient client = new RestClient("http://localhost:5005/api");
             RestRequest request = new RestRequest($"destinations", Method.GET);
             var response = await client.ExecuteAsync(request);
             return response.Content;
@@ -16,6 +16,7 @@ namespace TravelApi.Models
         {
             RestClient client = new RestClient("http://localhost:5000/api");
             RestRequest request = new RestRequest($"destinations/{id}", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
             var response = await client.ExecuteAsync(request);
             return response.Content;
         }

@@ -6,13 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TravelApi.Models;
+using TravelClient.Models;
 using Newtonsoft;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.AspNetCore.JsonPatch;
 
-namespace TravelApi.Controllers
+namespace TravelClient.Controllers
 {
     public class DestinationsController : Controller
     {

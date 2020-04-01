@@ -21,31 +21,32 @@ namespace TravelApi.Controllers
     public class DestinationsController : ControllerBase
     {
         private IRepositoryWrapper _db;
-        private readonly UserManager<ApplicationUser> _userManager;
-        public DestinationsController(UserManager<ApplicationUser> userManager, IRepositoryWrapper db)
+        // private readonly UserManager<ApplicationUser> _userManager;
+        public DestinationsController(IRepositoryWrapper db)
         {
+            // UserManager<ApplicationUser> userManager,
             _db = db;
-            _userManager = userManager;
+            // _userManager = userManager;
         }
 
         // GET api/destinations
         [HttpGet]
-        public ActionResult<IQueryable<Destination>> Get(string searchString)
+        public ActionResult<IEnumerable<Destination>> Get()
         {
-            var query = (IQueryable<Destination>)_db.Destination;
-            if (searchString == "review")
-            {
-                query = (IQueryable<Destination>)_db.Destination.GetDestinationsByReviewCountDescending();
-            }
-            else if (searchString == "rating")
-            {
-                query = (IQueryable<Destination>)_db.Destination.GetDestinationsAverageRatingDescending();
-            }
-            else
-            {
-                query = (IQueryable<Destination>)_db.Destination.GetAllDestinations();
-            }
-            return (IQueryable<Destination>)query;
+            // // var query = Queryable.AsQueryable(_db.Destination);
+            // if (searchString == "review")
+            // {
+            //     return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
+            // }
+            // else if (searchString == "rating")
+            // {
+            //     return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
+            // }
+            // else
+            // {
+            //     return _db.Destination.GetAllDestinations().ToList();
+            // }
+            return _db.Destination.GetAllDestinations().ToList();
         }
 
         // POST api/destinations

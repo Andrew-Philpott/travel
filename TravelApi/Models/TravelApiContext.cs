@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TravelApi.Models
 {
-    public class TravelApiContext : IdentityDbContext<ApplicationUser>
+    public class TravelApiContext : DbContext
     {
         public TravelApiContext(DbContextOptions options) : base(options)
         {

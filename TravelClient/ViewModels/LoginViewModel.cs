@@ -1,4 +1,4 @@
-namespace TravelApi.ViewModels
+namespace TravelClient.ViewModels
 {
     public class LoginViewModel
     {

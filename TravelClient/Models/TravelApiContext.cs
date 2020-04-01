@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace TravelApi.Models
+namespace TravelClient.Models
 {
-    public class TravelApiContext : IdentityDbContext<ApplicationUser>
+    public class TravelClientContext : IdentityDbContext<ApplicationUser>
     {
-        public TravelApiContext(DbContextOptions options) : base(options)
+        public TravelClientContext(DbContextOptions options) : base(options)
         {
         }
 

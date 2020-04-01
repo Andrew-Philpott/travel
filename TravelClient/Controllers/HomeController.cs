@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using travelapi.Models;
+using TravelClient.Models;
 
-namespace TravelApi.Controllers
+namespace TravelClient.Controllers
 {
     public class HomeController : Controller
     {

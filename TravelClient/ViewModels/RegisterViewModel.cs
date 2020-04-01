@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TravelApi.ViewModels
+namespace TravelClient.ViewModels
 {
     public class RegisterViewModel
     {

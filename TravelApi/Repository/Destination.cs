@@ -12,29 +12,28 @@ namespace TravelApi.Repository
             : base(repositoryContext)
         {
         }
-        public IEnumerable<Destination> GetAllDestinations()
+        public IQueryable<Destination> GetAllDestinations()
         {
             return FindAll()
-            .OrderBy(x => x.City)
-            .ToList();
+            .OrderBy(x => x.City);
         }
 
-        public Destination GetDestinationById(int id)
+        public IQueryable<Destination> GetDestinationById(int id)
         {
-            return FindByCondition(destination => destination.DestinationId == id).FirstOrDefault();
+            return FindByCondition(destination => destination.DestinationId == id);
         }
 
-        public IEnumerable<Destination> GetDestinationsByCityName(string city)
+        public IQueryable<Destination> GetDestinationsByCityName(string city)
         {
             return FindByCondition(destination => destination.City.Equals(city));
         }
 
-        public IEnumerable<Destination> GetDestinationsByCountryName(string country)
+        public IQueryable<Destination> GetDestinationsByCountryName(string country)
         {
             return FindByCondition(destination => destination.Country.Equals(country));
         }
 
-        public IEnumerable<Destination> GetDestinationsByReviewCountDescending()
+        public IQueryable<Destination> GetDestinationsByReviewCountDescending()
         {
             var mostReviewedDestination = TravelApiContext.Reviews
                     .GroupBy(review => review.DestinationId)
@@ -48,7 +47,7 @@ namespace TravelApi.Repository
                     select new Destination { DestinationId = m.DestinationId, Country = mrd.Country, City = mrd.City });
         }
 
-        public IEnumerable<Destination> GetDestinationsAverageRatingDescending()
+        public IQueryable<Destination> GetDestinationsAverageRatingDescending()
         {
             var ratings = TravelApiContext.Reviews
                   .GroupBy(review => review.DestinationId)

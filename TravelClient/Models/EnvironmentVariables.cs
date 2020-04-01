@@ -1,4 +1,4 @@
-namespace TravelApi.Models
+namespace TravelClient.Models
 {
     public static class EnvironmentVariables
     {
