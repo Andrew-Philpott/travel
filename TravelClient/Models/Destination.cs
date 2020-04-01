@@ -45,16 +45,14 @@ namespace TravelClient.Models
 
             return destination;
         }
-        public static Destination Search(string query)
+        public static List<Destination> Search(string city, string country)
         {
-            Console.WriteLine("In destination.search " + query);
-            var apiCallTask = ApiHelper.Search(query);
+            var apiCallTask = ApiHelper.Search(city, country);
             var result = apiCallTask.Result;
             Console.WriteLine("In destination.search result" + result);
-            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-            Destination destination = JsonConvert.DeserializeObject<Destination>(jsonResponse.ToString());
-
-            return destination;
+            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+            List<Destination> destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
+            return destinationList;
         }
         public static List<Destination> GetDestinations()
         {

@@ -23,11 +23,11 @@ namespace TravelClient.Controllers
             return View(thisPhoto);
         }
 
-        public IActionResult Search(string searchString)
+        public IActionResult Search(string city, string country)
         {
-            Console.WriteLine("Search:");
-            Console.WriteLine(searchString);
-            var destinations = Destination.Search(searchString);
+            // Console.WriteLine("Search:");
+            // Console.WriteLine(searchString);
+            var destinations = Destination.Search(city, country);
             return RedirectToAction("Index", destinations);
         }
 

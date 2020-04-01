@@ -33,12 +33,20 @@ namespace TravelApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Destination>> Get(string city, string country)
         {
+            if ((city == null) && (country == null))
+            {
+                return _db.Destination.GetDestinations(city, country).ToList();
+            }
+            else
+            {
+                return _db.Destination.FindAll().ToList();
+            }
             // IQueryable destinations = _db.Destination.GetAllDestinations();
             // if (city != null && country != null)
             // {
             //     return destinations.
             // }
-            return _db.Destination.GetDestinations(city, country).ToList();
+
             // destinations.
             // if (searchString == "review")
             // {
@@ -71,7 +79,6 @@ namespace TravelApi.Controllers
         //         return _db.Destination.GetAllDestinations().ToList();
         //     }
         // }
-
         // POST api/destinations
         [HttpPost]
         public void Post([FromBody] Destination destination)
