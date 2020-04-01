@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TravelClient.Models;
+using System;
 
 namespace TravelClient.Controllers
 {
@@ -20,6 +21,14 @@ namespace TravelClient.Controllers
         {
             var thisPhoto = Destination.GetDetails(id);
             return View(thisPhoto);
+        }
+
+        public IActionResult Search(string searchString)
+        {
+            Console.WriteLine("Search:");
+            Console.WriteLine(searchString);
+            var destinations = Destination.Search(searchString);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Create()

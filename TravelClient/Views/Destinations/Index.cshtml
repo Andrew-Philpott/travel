@@ -18,19 +18,19 @@
     <div>
     </div>
     <div>
-      <form asp-controller="Reviews" asp-action="get" method="get"asp-controller="Reviews" asp-action="get" method="get" class="form-inline my-2 my-lg-0">
+      <form asp-controller="Destinations" asp-action="Search" method="get" class="form-inline my-2 my-lg-0">
           <input name="searchString" class="form-control mr-sm-2" type="search" placeholder="Seattle, Washington" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
     <div class="searchheaderbuttons">
-       <form asp-controller="Destinations" asp-action="Get" method="get">
+       <form asp-controller="Destinations" asp-action="Search" method="get">
          <input name="searchString" type="hidden" value="review">
         <input class="btn btn-primary" type="submit" value="Most Reviewed" />
       </form>
     </div>
     <div class="searchheaderbuttons">
-       <form asp-controller="Destinations" asp-action="Get" method="get">
+       <form asp-controller="Destinations" asp-action="Search" method="get">
          <input name="searchString" type="hidden" value="rating">
         <input class="btn btn-primary" type="submit" value="Highest Rated" />
       </form>

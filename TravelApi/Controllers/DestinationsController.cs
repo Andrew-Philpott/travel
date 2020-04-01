@@ -33,6 +33,25 @@ namespace TravelApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Destination>> Get(string searchString)
         {
+            Console.WriteLine(searchString);
+            // var query = Queryable.AsQueryable(_db.Destination);
+            if (searchString == "review")
+            {
+                return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
+            }
+            else if (searchString == "rating")
+            {
+                return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
+            }
+            else
+            {
+                return _db.Destination.GetAllDestinations().ToList();
+            }
+        }
+        [HttpGet("{query}")]
+        public ActionResult<IEnumerable<Destination>> Search(string searchString)
+        {
+            Console.WriteLine(searchString + " search string in api search");
             // var query = Queryable.AsQueryable(_db.Destination);
             if (searchString == "review")
             {

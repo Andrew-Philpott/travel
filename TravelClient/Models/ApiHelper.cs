@@ -12,9 +12,17 @@ namespace TravelClient.Models
             return response.Content;
         }
 
+        public static async Task<string> Search(string query)
+        {
+            RestClient client = new RestClient("http://localhost:5005/api");
+            RestRequest request = new RestRequest($"destinations/{query}", Method.GET);
+            var response = await client.ExecuteAsync(request);
+            return response.Content;
+        }
+
         public static async Task<string> Get(int id)
         {
-            RestClient client = new RestClient("http://localhost:5000/api");
+            RestClient client = new RestClient("http://localhost:5005/api");
             RestRequest request = new RestRequest($"destinations/{id}", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = await client.ExecuteAsync(request);
@@ -22,7 +30,7 @@ namespace TravelClient.Models
         }
         public static async Task Post(string newDestination)
         {
-            RestClient client = new RestClient("http://localhost:5000/api");
+            RestClient client = new RestClient("http://localhost:5005/api");
             RestRequest request = new RestRequest($"destinations", Method.POST);
             request.AddHeader("Content-Type", "application/json");
             request.AddJsonBody(newDestination);
@@ -31,7 +39,7 @@ namespace TravelClient.Models
 
         public static async Task Put(int id, string newAnimal)
         {
-            RestClient client = new RestClient("http://localhost:5000/api");
+            RestClient client = new RestClient("http://localhost:5005/api");
             RestRequest request = new RestRequest($"destinations/{id}", Method.PUT);
             request.AddHeader("Content-Type", "application/json");
             request.AddJsonBody(newAnimal);
@@ -40,7 +48,7 @@ namespace TravelClient.Models
 
         public static async Task Delete(int id)
         {
-            RestClient client = new RestClient("http://localhost:5000/api");
+            RestClient client = new RestClient("http://localhost:5005/api");
             RestRequest request = new RestRequest($"destinations/{id}", Method.DELETE);
             request.AddHeader("Content-Type", "application/json");
             var response = await client.ExecuteAsync(request);

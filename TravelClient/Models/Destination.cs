@@ -45,7 +45,16 @@ namespace TravelClient.Models
 
             return destination;
         }
+        public static Destination Search(string query)
+        {
+            var apiCallTask = ApiHelper.Search(query);
+            var result = apiCallTask.Result;
 
+            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+            Destination destination = JsonConvert.DeserializeObject<Destination>(jsonResponse.ToString());
+
+            return destination;
+        }
         public static List<Destination> GetDestinations()
         {
             var apiCallTask = ApiHelper.GetAll();
