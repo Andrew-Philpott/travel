@@ -28,7 +28,7 @@ namespace TravelClient.Controllers
             Console.WriteLine("Search:");
             Console.WriteLine(searchString);
             var destinations = Destination.Search(searchString);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", destinations);
         }
 
         public IActionResult Create()

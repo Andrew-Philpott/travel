@@ -12,10 +12,14 @@ namespace TravelClient.Models
             return response.Content;
         }
 
-        public static async Task<string> Search(string query)
+        public static async Task<string> Search(string searchString)
         {
+            string[] strings = searchString.Split(" ");
+
+
             RestClient client = new RestClient("http://localhost:5005/api");
-            RestRequest request = new RestRequest($"destinations/{query}", Method.GET);
+            RestRequest request = new RestRequest($"destinations?city={strings[0]}&country={strings[1]}", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
             var response = await client.ExecuteAsync(request);
             return response.Content;
         }

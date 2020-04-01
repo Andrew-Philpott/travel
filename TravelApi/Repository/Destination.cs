@@ -8,14 +8,30 @@ namespace TravelApi.Repository
 {
     public class DestinationRepository : RepositoryBase<Destination>, IDestinationRepository
     {
+
         public DestinationRepository(TravelApiContext repositoryContext)
             : base(repositoryContext)
         {
+            Queryable.AsQueryable(repositoryContext.Destinations);
         }
-        public IEnumerable<Destination> GetAllDestinations()
+        public IQueryable<Destination> GetAllDestinations()
         {
             return FindAll()
             .OrderBy(x => x.City);
+        }
+
+        public IQueryable<Destination> GetDestinations(string city, string country)
+        {
+            IQueryable<Destination> destinations = FindAll();
+            if (city != null)
+            {
+                destinations = destinations.Where(x => x.City == city);
+            }
+            if (country != null)
+            {
+                destinations = destinations.Where(x => x.Country == country);
+            }
+            return destinations;
         }
 
         public Destination GetDestinationById(int id)
@@ -31,6 +47,11 @@ namespace TravelApi.Repository
         public IEnumerable<Destination> GetDestinationsByCountryName(string country)
         {
             return FindByCondition(destination => destination.Country.Equals(country)).ToList();
+        }
+
+        public IEnumerable<Destination> GetDestinationsByCityAndCountry(string city, string country)
+        {
+            return FindByCondition(destination => destination.Country.Equals(country) && destination.Country.Equals(city)).ToList();
         }
 
         public IEnumerable<Destination> GetDestinationsByReviewCountDescending()

@@ -31,41 +31,46 @@ namespace TravelApi.Controllers
 
         // GET api/destinations
         [HttpGet]
-        public ActionResult<IEnumerable<Destination>> Get(string searchString)
+        public ActionResult<IEnumerable<Destination>> Get(string city, string country)
         {
-            Console.WriteLine(searchString);
-            // var query = Queryable.AsQueryable(_db.Destination);
-            if (searchString == "review")
-            {
-                return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
-            }
-            else if (searchString == "rating")
-            {
-                return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
-            }
-            else
-            {
-                return _db.Destination.GetAllDestinations().ToList();
-            }
+            // IQueryable destinations = _db.Destination.GetAllDestinations();
+            // if (city != null && country != null)
+            // {
+            //     return destinations.
+            // }
+            return _db.Destination.GetDestinations(city, country).ToList();
+            // destinations.
+            // if (searchString == "review")
+            // {
+            //     return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
+            // }
+            // else if (searchString == "rating")
+            // {
+            //     return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
+            // }
+            // else
+            // {
+            //     return _db.Destination.GetAllDestinations().ToList();
+            // }
         }
-        [HttpGet("{query}")]
-        public ActionResult<IEnumerable<Destination>> Search(string searchString)
-        {
-            Console.WriteLine(searchString + " search string in api search");
-            // var query = Queryable.AsQueryable(_db.Destination);
-            if (searchString == "review")
-            {
-                return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
-            }
-            else if (searchString == "rating")
-            {
-                return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
-            }
-            else
-            {
-                return _db.Destination.GetAllDestinations().ToList();
-            }
-        }
+        // [HttpGet]
+        // public ActionResult<IEnumerable<Destination>> Search(string city, string country)
+        // {
+        //     Console.WriteLine(searchString + " search string in api search");
+        //     // var query = Queryable.AsQueryable(_db.Destination);
+        //     if (searchString == "review")
+        //     {
+        //         return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
+        //     }
+        //     else if (searchString == "rating")
+        //     {
+        //         return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
+        //     }
+        //     else
+        //     {
+        //         return _db.Destination.GetAllDestinations().ToList();
+        //     }
+        // }
 
         // POST api/destinations
         [HttpPost]

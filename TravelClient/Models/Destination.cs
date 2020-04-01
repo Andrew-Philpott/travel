@@ -47,9 +47,10 @@ namespace TravelClient.Models
         }
         public static Destination Search(string query)
         {
+            Console.WriteLine("In destination.search " + query);
             var apiCallTask = ApiHelper.Search(query);
             var result = apiCallTask.Result;
-
+            Console.WriteLine("In destination.search result" + result);
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
             Destination destination = JsonConvert.DeserializeObject<Destination>(jsonResponse.ToString());
 
