@@ -20,7 +20,8 @@ namespace TravelApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                      .UseUrls("https://localhost:5005/");
                 });
     }
 }

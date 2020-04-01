@@ -9,18 +9,18 @@ namespace TravelApi.Repository
         private IReviewRepository _review;
         private IDestinationRepository _destination;
 
-        public IReviewRepository Review
-        {
-            get
-            {
-                if (_review == null)
-                {
-                    _review = new ReviewRepository(_travelApiContext);
-                }
+        // public IReviewRepository Review
+        // {
+        //     get
+        //     {
+        //         if (_review == null)
+        //         {
+        //             _review = new ReviewRepository(_travelApiContext);
+        //         }
 
-                return _review;
-            }
-        }
+        //         return _review;
+        //     }
+        // }
 
         public IDestinationRepository Destination
         {

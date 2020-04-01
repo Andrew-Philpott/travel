@@ -31,28 +31,12 @@ namespace TravelApi
         }
         public IConfiguration Configuration { get; }
 
-        private static NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter()
-        {
-            var builder = new ServiceCollection()
-                .AddLogging()
-                .AddMvc()
-                .AddNewtonsoftJson()
-                .Services.BuildServiceProvider();
-
-            return builder
-                .GetRequiredService<IOptions<MvcOptions>>()
-                .Value
-                .InputFormatters
-                .OfType<NewtonsoftJsonPatchInputFormatter>()
-                .First();
-        }
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureRepositoryWrapper();
 
             services.AddControllersWithViews(options =>
             {
-                options.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
                 options.EnableEndpointRouting = false;
             });
 

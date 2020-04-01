@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,136 +7,78 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TravelApi.Models;
-using System.Security.Claims;
+using Newtonsoft;
 using System.Text.RegularExpressions;
+using TravelApi.Repository;
+using Contracts;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace TravelApi.Controllers
 {
-    [Route("[controller]"), Produces("application/json")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class DestinationsController : Controller
+    public class DestinationsController : ControllerBase
     {
-        private readonly TravelApiContext _db;
+        private IRepositoryWrapper _db;
         private readonly UserManager<ApplicationUser> _userManager;
-
-        public DestinationsController(UserManager<ApplicationUser> userManager, TravelApiContext db)
+        public DestinationsController(UserManager<ApplicationUser> userManager, IRepositoryWrapper db)
         {
             _db = db;
             _userManager = userManager;
         }
-        // GET api/destinations
-        [AllowAnonymous]
-        [HttpGet]
-        public ActionResult<IEnumerable<Destination>> Get(string searchString)
-        {
-            IEnumerable<Destination> query = null;
 
+        // GET api/destinations
+        [HttpGet]
+        public ActionResult<IQueryable<Destination>> Get(string searchString)
+        {
+            var query = (IQueryable<Destination>)_db.Destination;
             if (searchString == "review")
             {
-                var mostReviewedDestination = _db.Reviews
-                    .GroupBy(review => review.DestinationId)
-                    .Select(group => new { DestinationId = group.Key, Count = group.Count() })
-                    .OrderByDescending(x => x.Count);
-                Console.WriteLine();
-                foreach (var item in mostReviewedDestination)
-                {
-                    Console.WriteLine(item.DestinationId + " " + item.Count);
-                }
-
-                query = (from mrd in _db.Destinations
-                         join m in mostReviewedDestination
-                         on mrd.DestinationId equals m.DestinationId
-                         orderby m.Count descending
-                         select new Destination { DestinationId = m.DestinationId, Country = mrd.Country, City = mrd.City }).ToList();
+                query = (IQueryable<Destination>)_db.Destination.GetDestinationsByReviewCountDescending();
             }
             else if (searchString == "rating")
             {
-                var ratings = _db.Reviews
-                  .GroupBy(review => review.DestinationId)
-                  .Select(group => new { DestinationId = group.Key, Average = (_db.Reviews.Where(x => x.DestinationId == group.Key).Average(x => x.Rating)) })
-                  .OrderByDescending(x => x.Average);
-
-                query = (from d in ratings
-                         join dr in _db.Destinations on d.DestinationId equals dr.DestinationId
-                         select new Destination { DestinationId = d.DestinationId, Country = dr.Country, City = dr.City }
-                         ).ToList();
+                query = (IQueryable<Destination>)_db.Destination.GetDestinationsAverageRatingDescending();
             }
             else
             {
-                query = _db.Destinations.ToList();
+                query = (IQueryable<Destination>)_db.Destination.GetAllDestinations();
             }
-            return View("Index", query);
-        }
-
-        // [HttpGet]
-        // public ActionResult<IEnumerable<Destination>> GetAll()
-        // {
-        //     IEnumerable<Destination> query = _db.Destinations.ToList();
-        //     return View("Index", query);
-        // }
-
-        [HttpGet("/destinations/create")]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpGet("/destinations/edit/{id}")]
-        public IActionResult Edit(int id)
-        {
-            Destination destination = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
-            return View(destination);
-        }
-
-        [AllowAnonymous]
-        // GET api/destinations/5
-        [HttpGet("details/{id}")]
-        public ActionResult<Destination> Get(int id)
-        {
-            Destination destination = _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
-            destination.Reviews = _db.Reviews.Where(entry => entry.DestinationId == id).ToList();
-            return View("Details", destination);
+            return (IQueryable<Destination>)query;
         }
 
         // POST api/destinations
         [HttpPost]
-        public async Task<ActionResult> Post(Destination destination)
+        public void Post([FromBody] Destination destination)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = await _userManager.FindByIdAsync(userId);
-            destination.User = currentUser;
-            _db.Destinations.Add(destination);
-            _db.SaveChanges();
-            return RedirectToAction("Get");
+            _db.Destination.Create(destination);
+            _db.Save();
         }
 
-        // PUT api/destinations/5
-        [HttpPatch]
-        public ActionResult Patch(int id, [FromBody] JsonPatchDocument<Destination> destination)
+        // GET api/destinations/5
+        [HttpGet("{id}")]
+        public ActionResult<Destination> Get(int id)
         {
-            if (destination != null)
-            {
-                var dest = new Destination();
-
-                destination.ApplyTo(dest, ModelState);
-                _db.Entry(dest).State = EntityState.Modified;
-                _db.SaveChanges();
-                return RedirectToAction("Get");
-            }
-            return RedirectToAction("Get");
+            return _db.Destination.FindByCondition(entry => entry.DestinationId == id).FirstOrDefault();
         }
 
-        // DELETE api/destinations/5
-        // [HttpPost, ActionName("Delete")]
-        // public async Task<IActionResult> Delete(int id)
-        // {
-        //     Destination destinationToDelete = await _db.Destinations.FirstOrDefaultAsync(entry => entry.DestinationId == id);
+        // PUT api/destinations/8
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] Destination destination)
+        {
+            destination.DestinationId = id;
+            _db.Destination.Update(destination);
+            _db.Save();
+        }
 
-        //     // FirstOrDefault(entry => entry.DestinationId == id);
-        //     _db.Destinations.Remove(destinationToDelete);
-        //     await _db.SaveChangesAsync();
-        //     return RedirectToAction("Get");
-        // }
+        // Delete api/destinations/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            var destination = _db.Destination.FindByCondition(entry => entry.DestinationId == id).FirstOrDefault();
+            _db.Destination.Delete(destination);
+            _db.Save();
+        }
     }
 }
