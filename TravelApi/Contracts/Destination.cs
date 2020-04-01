@@ -8,7 +8,7 @@ namespace Contracts
 {
     public interface IDestinationRepository : IRepositoryBase<Destination>
     {
-        IQueryable<Destination> GetDestinationById(int id);
+        Destination GetDestinationById(int id);
         IQueryable<Destination> GetAllDestinations();
         IQueryable<Destination> GetDestinationsByCityName(string city);
         IQueryable<Destination> GetDestinationsByCountryName(string country);

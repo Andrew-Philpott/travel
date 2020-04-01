@@ -31,22 +31,21 @@ namespace TravelApi.Controllers
 
         // GET api/destinations
         [HttpGet]
-        public ActionResult<IEnumerable<Destination>> Get()
+        public ActionResult<IEnumerable<Destination>> Get(string searchString)
         {
-            // // var query = Queryable.AsQueryable(_db.Destination);
-            // if (searchString == "review")
-            // {
-            //     return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
-            // }
-            // else if (searchString == "rating")
-            // {
-            //     return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
-            // }
-            // else
-            // {
-            //     return _db.Destination.GetAllDestinations().ToList();
-            // }
-            return _db.Destination.GetAllDestinations().ToList();
+            // var query = Queryable.AsQueryable(_db.Destination);
+            if (searchString == "review")
+            {
+                return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
+            }
+            else if (searchString == "rating")
+            {
+                return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
+            }
+            else
+            {
+                return _db.Destination.GetAllDestinations().ToList();
+            }
         }
 
         // POST api/destinations
@@ -61,7 +60,7 @@ namespace TravelApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<Destination> Get(int id)
         {
-            return _db.Destination.FindByCondition(entry => entry.DestinationId == id).FirstOrDefault();
+            return _db.Destination.GetDestinationById(id);
         }
 
         // PUT api/destinations/8
@@ -77,7 +76,7 @@ namespace TravelApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var destination = _db.Destination.FindByCondition(entry => entry.DestinationId == id).FirstOrDefault();
+            Destination destination = _db.Destination.GetDestinationById(id);
             _db.Destination.Delete(destination);
             _db.Save();
         }

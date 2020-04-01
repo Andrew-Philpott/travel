@@ -18,9 +18,9 @@ namespace TravelApi.Repository
             .OrderBy(x => x.City);
         }
 
-        public IQueryable<Destination> GetDestinationById(int id)
+        public Destination GetDestinationById(int id)
         {
-            return FindByCondition(destination => destination.DestinationId == id);
+            return FindByCondition(destination => destination.DestinationId == id).FirstOrDefault();
         }
 
         public IQueryable<Destination> GetDestinationsByCityName(string city)

@@ -8,10 +8,10 @@ namespace Contracts
     public interface IReviewRepository : IRepositoryBase<Review>
     {
         Review GetReviewById(int id);
-        IEnumerable<Review> GetAllReviews();
-        IEnumerable<Review> GetReviewsByCityName(string city);
-        IEnumerable<Review> GetReviewsByCountryName(string country);
-        IEnumerable<Review> GetReviewsByReviewCountDescending();
-        IEnumerable<Review> GetReviewsAverageRatingDescending();
+        IQueryable<Review> GetAllReviews();
+        // IQueryable<Review> GetReviewsByCityName(string city);
+        // IQueryable<Review> GetReviewsByCountryName(string country);
+        // IQueryable<Review> GetReviewsByReviewCountDescending();
+        // IQueryable<Review> GetReviewsAverageRatingDescending();
     }
 }

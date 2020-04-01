@@ -1,16 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TravelClient.Models;
-using Newtonsoft;
-using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace TravelClient.Controllers
 {
@@ -47,8 +36,8 @@ namespace TravelClient.Controllers
 
         public IActionResult Edit(int id)
         {
-            var thisPhoto = Destination.GetDetails(id);
-            return View(thisPhoto);
+            var destination = Destination.GetDetails(id);
+            return View(destination);
         }
 
         [HttpPost]
