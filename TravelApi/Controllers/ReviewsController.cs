@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TravelApi.Models;
 using System.Text.RegularExpressions;
+using TravelApi.Repository;
+using Contracts;
 
 namespace TravelApi.Controllers
 {
@@ -17,9 +19,9 @@ namespace TravelApi.Controllers
     [ApiController]
     public class ReviewsController : Controller
     {
-        private readonly TravelApiContext _db;
+        private IRepositoryWrapper _db;
         private readonly UserManager<ApplicationUser> _userManager;
-        public ReviewsController(UserManager<ApplicationUser> userManager, TravelApiContext db)
+        public ReviewsController(UserManager<ApplicationUser> userManager, IRepositoryWrapper db)
         {
             _db = db;
             _userManager = userManager;

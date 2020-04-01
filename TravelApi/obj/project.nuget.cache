@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pUusYTZpc+QMvZ+LlHqQ9SC1hQuGMk+bmDE7fg42aMi6y+fBxHSVlFY+dKHJkNylGz4OuPQ4tVoPmqzFbtRqKQ==",
+  "dgSpecHash": "mfhJ8xu/uKy0EEcsGu2rFKgqPM51io8CbpdMH1BIJ7ViO8OX6Wv3p/rIiOsQFt8UvPX1sHbH5mQwSnZzYANZ8w==",
   "success": true,
   "projectFilePath": "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelapi\\travelapi.csproj",
   "expectedPackageFiles": [
@@ -36,7 +36,7 @@
     "C:\\Users\\andre\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\3.1.1\\pomelo.entityframeworkcore.mysql.3.1.1.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\pomelo.jsonobject\\2.2.1\\pomelo.jsonobject.2.2.1.nupkg.sha512",
-    "C:\\Users\\andre\\.nuget\\packages\\restsharp\\106.6.10\\restsharp.106.6.10.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\restsharp\\106.10.1\\restsharp.106.10.1.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\system.collections.immutable\\1.7.0\\system.collections.immutable.1.7.0.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.0\\system.diagnostics.diagnosticsource.4.7.0.nupkg.sha512"

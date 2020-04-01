@@ -9,8 +9,8 @@ using TravelApi.Models;
 namespace travelapi.Migrations
 {
     [DbContext(typeof(TravelApiContext))]
-    [Migration("20200331205054_Seeddatabase")]
-    partial class Seeddatabase
+    [Migration("20200331234810_update")]
+    partial class update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

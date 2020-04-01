@@ -11,9 +11,18 @@ using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Options;
 using System.Linq;
+using TravelApi.Repository;
+using Contracts;
 
 namespace TravelApi
 {
+    public static class ServiceExtensions
+    {
+        public static void ConfigureRepositoryWrapper(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+        }
+    }
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -39,6 +48,7 @@ namespace TravelApi
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureRepositoryWrapper();
 
             services.AddControllersWithViews(options =>
             {
