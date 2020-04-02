@@ -4,6 +4,5 @@ namespace TravelApi.Models
 {
     public class ApplicationUser : IdentityUser
     {
-
     }
 }

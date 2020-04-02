@@ -19,22 +19,18 @@ namespace TravelApi.Repository
         {
             return this.TravelApiContext.Set<T>().AsNoTracking();
         }
-
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
         {
             return this.TravelApiContext.Set<T>().Where(expression).AsNoTracking();
         }
-
         public void Create(T entity)
         {
             this.TravelApiContext.Set<T>().Add(entity);
         }
-
         public void Update(T entity)
         {
             this.TravelApiContext.Set<T>().Update(entity);
         }
-
         public void Delete(T entity)
         {
             this.TravelApiContext.Set<T>().Remove(entity);

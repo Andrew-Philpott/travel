@@ -19,15 +19,12 @@
     </div>
     <div>
       <form asp-controller="Destinations" asp-action="Search" method="get" class="form-inline my-2 my-lg-0">
-         <select class="custom-select custom-select-lg mb-3" name="country" asp-items="ViewBag.Countries"></select> 
-          <select class="custom-select custom-select-lg mb-3" name="city" asp-items="ViewBag.Cities"></select> 
-          @* <input name="search" class="form-control mr-sm-2" type="search" placeholder="Seattle, Washington" aria-label="Search"> *@
+          <input name="search" class="form-control mr-sm-2" type="search" placeholder="Seattle, Washington" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
     <div class="searchheaderbuttons">
        <form asp-controller="Destinations" asp-action="Search" method="get">
-         
          <input name="search" type="hidden" value="review">
         <input class="btn btn-primary" type="submit" value="Most Reviewed" />
       </form>

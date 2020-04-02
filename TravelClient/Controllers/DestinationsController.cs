@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using TravelClient.Models;
+using System.Collections.Generic;
 using System;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace TravelClient.Controllers
 {
@@ -13,7 +16,37 @@ namespace TravelClient.Controllers
 
         public IActionResult Index()
         {
-            var destinations = Destination.GetDestinations();
+            List<SelectListItem> countries = new List<SelectListItem>();
+            List<SelectListItem> cities = new List<SelectListItem>();
+
+            IQueryable<Destination> destinations = Destination.GetDestinations().AsQueryable();
+
+            HashSet<string> countriesArray = (from c in destinations
+                                              select new string(c.Country)).ToHashSet();
+
+            countries.AddRange(countriesArray.Select(a =>
+            new SelectListItem
+            {
+                Value = a,
+                Text = a
+            }
+            ).OrderBy(n => n.Text));
+
+            ViewBag.Countries = countries;
+
+            HashSet<string> citiesSet = (from c in destinations
+                                         select new string(c.City)).ToHashSet();
+
+            cities.AddRange(citiesSet.Select(a =>
+            new SelectListItem
+            {
+                Value = a,
+                Text = a
+            }
+            ).OrderBy(n => n.Text));
+
+            ViewBag.Cities = cities;
+
             return View(destinations);
         }
 
@@ -25,10 +58,10 @@ namespace TravelClient.Controllers
 
         public IActionResult Search(string city, string country)
         {
-            // Console.WriteLine("Search:");
-            // Console.WriteLine(searchString);
+            Console.WriteLine("Search:");
+            // Console.WriteLine(search);
             var destinations = Destination.Search(city, country);
-            return RedirectToAction("Index", destinations);
+            return View("Search", destinations);
         }
 
         public IActionResult Create()

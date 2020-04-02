@@ -9,12 +9,13 @@ namespace Contracts
     public interface IDestinationRepository : IRepositoryBase<Destination>
     {
         Destination GetDestinationById(int id);
-        IQueryable<Destination> GetAllDestinations();
-        IQueryable<Destination> GetDestinations(string city, string country);
-        IEnumerable<Destination> GetDestinationsByCityName(string city);
-        IEnumerable<Destination> GetDestinationsByCountryName(string country);
-        IEnumerable<Destination> GetDestinationsByReviewCountDescending();
-        IEnumerable<Destination> GetDestinationsAverageRatingDescending();
+        IEnumerable<Destination> GetAllDestinations();
+        IEnumerable<Destination> Query(string city, string country);
+        // IQueryable<Destination> GetDestinations(string city, string country);
+        // IEnumerable<Destination> GetDestinationsByCityName(string city);
+        // IEnumerable<Destination> GetDestinationsByCountryName(string country);
+        // IEnumerable<Destination> GetDestinationsByReviewCountDescending();
+        // IEnumerable<Destination> GetDestinationsAverageRatingDescending();
 
     }
 }

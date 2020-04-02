@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\TravelClient.csproj": {}
+    "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\travelclient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\TravelClient.csproj": {
+    "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\travelclient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\TravelClient.csproj",
-        "projectName": "TravelClient",
-        "projectPath": "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\TravelClient.csproj",
+        "projectUniqueName": "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\travelclient.csproj",
+        "projectName": "travelclient",
+        "projectPath": "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\travelclient.csproj",
         "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\obj\\",
         "projectStyle": "PackageReference",

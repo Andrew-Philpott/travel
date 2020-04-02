@@ -20601,6 +20601,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelClient\\Views\\Destinations\\Search.cshtml",
+      "TargetPath": "Views\\Destinations\\Search.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelClient\\Views\\Reviews\\Index.cshtml",
       "TargetPath": "Views\\Reviews\\Index.cshtml",
       "FileKind": "mvc"

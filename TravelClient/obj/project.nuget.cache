@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HF0vNnf4/ubAA5Q2FQU+yZ9dzvwZayQuMUPAcRwB7m+36x/nUMrEn5ZMI3iVJqmtFuUf3W2tHzk+ADyJ6yib5A==",
+  "dgSpecHash": "tZ61f2AEfBfBZCfAniKMEU/MGuL4KXs85cH56YJ63/ITUF1HHyOv+sra6cTJkviR+G/R47xAuVW8lasT4DVY8g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\TravelClient.csproj",
+  "projectFilePath": "C:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\travelclient\\travelclient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.3\\microsoft.aspnetcore.cryptography.internal.3.1.3.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.3\\microsoft.aspnetcore.cryptography.keyderivation.3.1.3.nupkg.sha512",

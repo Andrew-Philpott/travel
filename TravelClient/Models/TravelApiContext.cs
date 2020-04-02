@@ -9,7 +9,7 @@ namespace TravelClient.Models
         {
         }
 
-        public DbSet<Destination> Destinations { get; set; }
+        public DbSet<TravelClient.Models.Destination> Destinations { get; set; }
         public DbSet<Review> Reviews { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {

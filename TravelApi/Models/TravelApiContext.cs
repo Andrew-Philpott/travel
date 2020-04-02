@@ -7,7 +7,6 @@ namespace TravelApi.Models
         public TravelApiContext(DbContextOptions options) : base(options)
         {
         }
-
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Review> Reviews { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)

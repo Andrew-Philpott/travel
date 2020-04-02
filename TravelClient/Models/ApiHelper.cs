@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using RestSharp;
+using System;
+
 namespace TravelClient.Models
 {
     class ApiHelper
@@ -15,9 +17,10 @@ namespace TravelClient.Models
         public static async Task<string> Search(string city, string country)
         {
             RestClient client = new RestClient("http://localhost:5005/api");
-            RestRequest request = new RestRequest($"destinations?city={city}&country={country}", Method.GET);
+            RestRequest request = new RestRequest($"destinations/search?city={city}&country={country}", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = await client.ExecuteAsync(request);
+            Console.WriteLine("In apihelper search, response value: " + response);
             return response.Content;
         }
 

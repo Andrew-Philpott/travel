@@ -122,3 +122,10 @@ C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\ob
 C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\bin\Debug\netcoreapp3.1\travelclient.Views.dll
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\bin\Debug\netcoreapp3.1\travelclient.Views.pdb
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\bin\Debug\netcoreapp3.1\travelclient.exe
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\bin\Debug\netcoreapp3.1\travelapi.StaticWebAssets.xml
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\bin\Debug\netcoreapp3.1\travelclient.dll
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\bin\Debug\netcoreapp3.1\travelclient.pdb
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelapi\obj\Debug\netcoreapp3.1\travelapi.MvcApplicationPartsAssemblyInfo.cs

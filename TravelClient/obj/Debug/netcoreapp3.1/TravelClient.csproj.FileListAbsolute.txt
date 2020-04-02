@@ -78,3 +78,4 @@ C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient
 C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\obj\Debug\netcoreapp3.1\TravelClient.dll
 C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\obj\Debug\netcoreapp3.1\TravelClient.pdb
 C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\obj\Debug\netcoreapp3.1\TravelClient.genruntimeconfig.cache
+C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\obj\Debug\netcoreapp3.1\Razor\Views\Destinations\Search.cshtml.g.cs

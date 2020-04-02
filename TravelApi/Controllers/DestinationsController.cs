@@ -5,11 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TravelApi.Models;
-using Newtonsoft;
-using System.Text.RegularExpressions;
-using TravelApi.Repository;
 using Contracts;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.AspNetCore.JsonPatch;
@@ -31,16 +27,19 @@ namespace TravelApi.Controllers
 
         // GET api/destinations
         [HttpGet]
-        public ActionResult<IEnumerable<Destination>> Get(string city, string country)
+        public IEnumerable<Destination> Get()
         {
-            if ((city == null) && (country == null))
-            {
-                return _db.Destination.GetDestinations(city, country).ToList();
-            }
-            else
-            {
-                return _db.Destination.FindAll().ToList();
-            }
+            Console.WriteLine("In getter of destinations ");
+            // IQueryable<Destination> destinations = _db.Destination;
+            // if ((search != null))
+            // {
+            //     return _db.Destination.Query(search).ToList();
+            //     // return _db.Destination.GetDestinations(city, country).ToList();
+            // }
+            // else
+            // {
+            return _db.Destination.FindAll().ToList();
+            // }
             // IQueryable destinations = _db.Destination.GetAllDestinations();
             // if (city != null && country != null)
             // {
@@ -61,6 +60,22 @@ namespace TravelApi.Controllers
             //     return _db.Destination.GetAllDestinations().ToList();
             // }
         }
+        //GET api/destinations/search
+        [HttpGet("search")]
+        public IEnumerable<Destination> Search(string city, string country)
+        {
+            return _db.Destination.Query(city, country).ToList();
+            // if ((city != null))
+            // {
+            //     return _db.Destination.Query(city, country).ToList();
+            //     // return _db.Destination.GetDestinations(city, country).ToList();
+            // }
+            // else
+            // {
+            //     return _db.Destination.FindAll().ToList();
+            // }
+        }
+
         // [HttpGet]
         // public ActionResult<IEnumerable<Destination>> Search(string city, string country)
         // {

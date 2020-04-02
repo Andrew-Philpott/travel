@@ -8,31 +8,20 @@ namespace TravelClient.Models
 {
     public class Destination
     {
-        // public Destination()
-        // {
-        //     this.Reviews = new HashSet<Review>();
-        // }
         public int DestinationId { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public ICollection<Review> Reviews { get; set; }
         public virtual ApplicationUser User { get; set; }
-
-        public static void Post(Destination destination)
+        public static List<Destination> GetDestinations()
         {
-            string jsonDestination = JsonConvert.SerializeObject(destination);
-            var apiCallTask = ApiHelper.Post(jsonDestination);
-        }
+            var apiCallTask = ApiHelper.GetAll();
+            var result = apiCallTask.Result;
 
-        public static void Put(Destination destination)
-        {
-            string jsonDestination = JsonConvert.SerializeObject(destination);
-            var apiCallTask = ApiHelper.Put(destination.DestinationId, jsonDestination);
-        }
+            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+            List<Destination> destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
 
-        public static void Delete(int id)
-        {
-            var apiCallTask = ApiHelper.Delete(id);
+            return destinationList;
         }
 
         public static Destination GetDetails(int id)
@@ -47,22 +36,29 @@ namespace TravelClient.Models
         }
         public static List<Destination> Search(string city, string country)
         {
+            // Console.WriteLine("In destination.search before " + search);
             var apiCallTask = ApiHelper.Search(city, country);
             var result = apiCallTask.Result;
             Console.WriteLine("In destination.search result" + result);
             JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
             List<Destination> destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
+            Console.WriteLine("destinationList result: " + destinationList);
             return destinationList;
         }
-        public static List<Destination> GetDestinations()
+        public static void Post(Destination destination)
         {
-            var apiCallTask = ApiHelper.GetAll();
-            var result = apiCallTask.Result;
+            string jsonDestination = JsonConvert.SerializeObject(destination);
+            var apiCallTask = ApiHelper.Post(jsonDestination);
+        }
 
-            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-            List<Destination> destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
-
-            return destinationList;
+        public static void Put(Destination destination)
+        {
+            string jsonDestination = JsonConvert.SerializeObject(destination);
+            var apiCallTask = ApiHelper.Put(destination.DestinationId, jsonDestination);
+        }
+        public static void Delete(int id)
+        {
+            var apiCallTask = ApiHelper.Delete(id);
         }
     }
 }
