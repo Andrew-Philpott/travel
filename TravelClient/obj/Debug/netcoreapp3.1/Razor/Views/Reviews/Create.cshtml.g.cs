@@ -12,22 +12,8 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#nullable restore
-#line 1 "C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\Views\_ViewImports.cshtml"
-using TravelClient;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\Views\_ViewImports.cshtml"
-using TravelClient.Models;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3e1e8e15a5808bcfa091254e8b45f1c131f0728b", @"/Views/Reviews/Create.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"881156204694621735159ac2183c5559087d93d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"23ac09be4bcfaa7f9829a01d1a134874eaae1f3b", @"/Views/_ViewImports.cshtml")]
     public class Views_Reviews_Create : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<TravelClient.Models.Review>
     {
         #pragma warning disable 1998

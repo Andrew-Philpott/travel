@@ -9,8 +9,8 @@ using TravelApi.Models;
 namespace travelapi.Migrations
 {
     [DbContext(typeof(TravelApiContext))]
-    [Migration("20200402021557_Initial")]
-    partial class Initial
+    [Migration("20200402232359_Initialfix")]
+    partial class Initialfix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -5,7 +5,7 @@
 @using TravelClient.Models;
 @model IEnumerable<TravelClient.Models.Destination>
 
-<h1>Destinations</h1>
+<h1>By reviews</h1>
  <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -27,6 +27,7 @@
 </div>
 
 <div class='links'>
+  <p>@Html.ActionLink("Add an destination", "Create")</p>
   <p>@Html.ActionLink("Add an destination", "Create")</p>
   <p>@Html.ActionLink("Home", "Index", "Home")</p>
 </div>

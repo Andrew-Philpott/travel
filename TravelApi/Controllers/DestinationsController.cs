@@ -1,14 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TravelApi.Models;
 using Contracts;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace TravelApi.Controllers
 {
@@ -16,84 +10,39 @@ namespace TravelApi.Controllers
     [ApiController]
     public class DestinationsController : ControllerBase
     {
-        private IRepositoryWrapper _db;
-        // private readonly UserManager<ApplicationUser> _userManager;
+        protected IRepositoryWrapper _db;
         public DestinationsController(IRepositoryWrapper db)
         {
-            // UserManager<ApplicationUser> userManager,
             _db = db;
-            // _userManager = userManager;
         }
 
         // GET api/destinations
         [HttpGet]
         public IEnumerable<Destination> Get()
         {
-            Console.WriteLine("In getter of destinations ");
-            // IQueryable<Destination> destinations = _db.Destination;
-            // if ((search != null))
-            // {
-            //     return _db.Destination.Query(search).ToList();
-            //     // return _db.Destination.GetDestinations(city, country).ToList();
-            // }
-            // else
-            // {
             return _db.Destination.FindAll().ToList();
-            // }
-            // IQueryable destinations = _db.Destination.GetAllDestinations();
-            // if (city != null && country != null)
-            // {
-            //     return destinations.
-            // }
-
-            // destinations.
-            // if (searchString == "review")
-            // {
-            //     return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
-            // }
-            // else if (searchString == "rating")
-            // {
-            //     return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
-            // }
-            // else
-            // {
-            //     return _db.Destination.GetAllDestinations().ToList();
-            // }
         }
         //GET api/destinations/search
         [HttpGet("search")]
         public IEnumerable<Destination> Search(string city, string country)
         {
             return _db.Destination.Query(city, country).ToList();
-            // if ((city != null))
-            // {
-            //     return _db.Destination.Query(city, country).ToList();
-            //     // return _db.Destination.GetDestinations(city, country).ToList();
-            // }
-            // else
-            // {
-            //     return _db.Destination.FindAll().ToList();
-            // }
         }
 
-        // [HttpGet]
-        // public ActionResult<IEnumerable<Destination>> Search(string city, string country)
-        // {
-        //     Console.WriteLine(searchString + " search string in api search");
-        //     // var query = Queryable.AsQueryable(_db.Destination);
-        //     if (searchString == "review")
-        //     {
-        //         return _db.Destination.GetDestinationsByReviewCountDescending().ToList();
-        //     }
-        //     else if (searchString == "rating")
-        //     {
-        //         return _db.Destination.GetDestinationsAverageRatingDescending().ToList();
-        //     }
-        //     else
-        //     {
-        //         return _db.Destination.GetAllDestinations().ToList();
-        //     }
-        // }
+        [HttpGet("ratings")]
+        public IEnumerable<Destination> GetDestinationsByRatings()
+        {
+            return _db.Destination.GetDestinationsByRatings();
+
+        }
+
+        [HttpGet("reviews")]
+        public IEnumerable<Destination> GetDestinationsByReviews()
+        {
+            return _db.Destination.GetDestinationsByReviews();
+
+        }
+
         // POST api/destinations
         [HttpPost]
         public void Post([FromBody] Destination destination)
@@ -120,9 +69,9 @@ namespace TravelApi.Controllers
 
         // Delete api/destinations/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Remove(int id)
         {
-            Destination destination = _db.Destination.GetDestinationById(id);
+            var destination = _db.Destination.GetDestinationById(id);
             _db.Destination.Delete(destination);
             _db.Save();
         }

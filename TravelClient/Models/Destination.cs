@@ -30,19 +30,38 @@ namespace TravelClient.Models
             var result = apiCallTask.Result;
 
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-            Destination destination = JsonConvert.DeserializeObject<Destination>(jsonResponse.ToString());
+            var destination = JsonConvert.DeserializeObject<Destination>(jsonResponse.ToString());
 
             return destination;
         }
-        public static List<Destination> Search(string city, string country)
+
+        public static List<Destination> GetByReviews()
         {
-            // Console.WriteLine("In destination.search before " + search);
-            var apiCallTask = ApiHelper.Search(city, country);
+            var apiCallTask = ApiHelper.GetByReviews();
             var result = apiCallTask.Result;
-            Console.WriteLine("In destination.search result" + result);
+
             JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
             List<Destination> destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
-            Console.WriteLine("destinationList result: " + destinationList);
+
+            return destinationList;
+        }
+
+        public static List<Destination> GetByRatings()
+        {
+            var apiCallTask = ApiHelper.GetByRatings();
+            var result = apiCallTask.Result;
+
+            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+            List<Destination> destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
+
+            return destinationList;
+        }
+        public static List<Destination> Search(string city, string country)
+        {
+            var apiCallTask = ApiHelper.Search(city, country);
+            var result = apiCallTask.Result;
+            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+            List<Destination> destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
             return destinationList;
         }
         public static void Post(Destination destination)

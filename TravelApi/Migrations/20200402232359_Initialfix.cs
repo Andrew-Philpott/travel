@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace travelapi.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initialfix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

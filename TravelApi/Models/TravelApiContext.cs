@@ -23,9 +23,6 @@ namespace TravelApi.Models
                 new Destination { DestinationId = 8, Country = "United States", City = "Berlin" },
                 new Destination { DestinationId = 9, Country = "Ukraine", City = "Kyiv" }
             );
-            //most reviewed and highest rating
-            //most reviewed will be destination id = 5 so us wash
-            //highest rating will be the one with 5 which is nigeria lagos
             builder.Entity<Review>().HasData(
                 new Review { ReviewId = 1, ReviewerName = "Andriy", Description = "Awesome place", Rating = 5, DestinationId = 1 },
                 new Review { ReviewId = 2, ReviewerName = "Andriy", Description = "Better places", Rating = 3, DestinationId = 2 },

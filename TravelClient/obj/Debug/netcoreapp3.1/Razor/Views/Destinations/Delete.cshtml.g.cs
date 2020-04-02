@@ -12,22 +12,8 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#nullable restore
-#line 1 "C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\Views\_ViewImports.cshtml"
-using TravelClient;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\Views\_ViewImports.cshtml"
-using TravelClient.Models;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"efc6d8c4f8b0610e539cd963035970d9fcc61904", @"/Views/Destinations/Delete.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"881156204694621735159ac2183c5559087d93d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"23ac09be4bcfaa7f9829a01d1a134874eaae1f3b", @"/Views/_ViewImports.cshtml")]
     public class Views_Destinations_Delete : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<TravelClient.Models.Destination>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Delete", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -84,7 +70,7 @@ using TravelClient.Models;
 #line hidden
 #nullable disable
             WriteLiteral("</h2>\r\n</div>\r\n\r\n<div class=\'content\'>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "efc6d8c4f8b0610e539cd963035970d9fcc619045377", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "efc6d8c4f8b0610e539cd963035970d9fcc619044954", async() => {
                 WriteLiteral("\r\n    ");
 #nullable restore
 #line 13 "C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\Views\Destinations\Delete.cshtml"

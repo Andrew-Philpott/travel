@@ -81,17 +81,19 @@ a:hover {
 }
 
 .searchheader {
+  margin-top: 15px;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  /* width: 100%; */
-  /* height: auto; */
 }
 
 .searchheaderbuttons {
-  padding-top: 5.5px;
+  padding-top: 32px;
 }
 
 .user-input {
   display: flex;
+}
+
+.bottom {
+  height: 80px;
 }

@@ -12,22 +12,8 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#nullable restore
-#line 1 "C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\Views\_ViewImports.cshtml"
-using TravelClient;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\Views\_ViewImports.cshtml"
-using TravelClient.Models;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0cc54c2442381129719f8d6d5ded3c0b21845792", @"/Views/Reviews/Edit.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"881156204694621735159ac2183c5559087d93d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"23ac09be4bcfaa7f9829a01d1a134874eaae1f3b", @"/Views/_ViewImports.cshtml")]
     public class Views_Reviews_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<TravelClient.Models.Review>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Put", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -68,7 +54,7 @@ using TravelClient.Models;
 #nullable disable
             WriteLiteral("\r\n");
             WriteLiteral("\r\n<div class=\"jumbotron\">\r\n    <h2 class=\"display-4\"> Edit review</h2>\r\n</div>\r\n\r\n<div class=\'content\'>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0cc54c2442381129719f8d6d5ded3c0b218457924592", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0cc54c2442381129719f8d6d5ded3c0b218457924169", async() => {
                 WriteLiteral("\r\n    ");
 #nullable restore
 #line 13 "C:\Users\andre\desktop\projects\portfolio\csharp\travelapi.solution\travelclient\Views\Reviews\Edit.cshtml"

@@ -28,7 +28,7 @@ namespace TravelClient.Models
         {
             RestClient client = new RestClient("http://localhost:5005/api");
             RestRequest request = new RestRequest($"destinations/{id}", Method.GET);
-            request.AddHeader("Content-Type", "application/json");
+            // request.AddHeader("Content-Type", "application/json");
             var response = await client.ExecuteAsync(request);
             return response.Content;
         }
@@ -41,21 +41,40 @@ namespace TravelClient.Models
             var response = await client.ExecuteAsync(request);
         }
 
-        public static async Task Put(int id, string newAnimal)
+        public static async Task Put(int id, string newDestination)
         {
+            Console.WriteLine("Put id: " + id);
+            Console.WriteLine("Put id: " + newDestination);
             RestClient client = new RestClient("http://localhost:5005/api");
             RestRequest request = new RestRequest($"destinations/{id}", Method.PUT);
+
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(newAnimal);
+            request.AddJsonBody(newDestination);
             var response = await client.ExecuteAsync(request);
         }
-
         public static async Task Delete(int id)
         {
             RestClient client = new RestClient("http://localhost:5005/api");
             RestRequest request = new RestRequest($"destinations/{id}", Method.DELETE);
             request.AddHeader("Content-Type", "application/json");
             var response = await client.ExecuteAsync(request);
+        }
+
+        public static async Task<string> GetByReviews()
+        {
+            RestClient client = new RestClient("http://localhost:5005/api");
+            RestRequest request = new RestRequest($"destinations/reviews", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = await client.ExecuteAsync(request);
+            return response.Content;
+        }
+        public static async Task<string> GetByRatings()
+        {
+            RestClient client = new RestClient("http://localhost:5005/api");
+            RestRequest request = new RestRequest($"destinations/ratings", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = await client.ExecuteAsync(request);
+            return response.Content;
         }
     }
 }

@@ -52,6 +52,28 @@ namespace TravelClient.Models
 
             return reviewsList;
         }
+
+        public static List<Review> GetHighestRated()
+        {
+            var apiCallTask = ApiHelper.GetAll();
+            var result = apiCallTask.Result;
+
+            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+            List<Review> reviewsList = JsonConvert.DeserializeObject<List<Review>>(jsonResponse.ToString());
+
+            return reviewsList;
+        }
+
+        public static List<Review> GetHighestReviewed()
+        {
+            var apiCallTask = ApiHelper.GetAll();
+            var result = apiCallTask.Result;
+
+            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+            List<Review> reviewsList = JsonConvert.DeserializeObject<List<Review>>(jsonResponse.ToString());
+
+            return reviewsList;
+        }
     }
 
 

@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 namespace TravelApi.Models
 {
     public class Review
@@ -13,18 +9,5 @@ namespace TravelApi.Models
         public int DestinationId { get; set; }
         public virtual Destination Destination { get; set; }
         public virtual ApplicationUser User { get; set; }
-
-        // public static List<Review> GetReviews()
-        // {
-        //     var apiCallTask = ApiHelper.GetAll();
-        //     var result = apiCallTask.Result;
-
-        //     JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-        //     List<Animal> animalList = JsonConvert.DeserializeObject<List<Animal>>(jsonResponse.ToString());
-
-        //     return animalList;
-        // }
     }
-
-
 }

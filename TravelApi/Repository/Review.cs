@@ -1,7 +1,8 @@
 using Contracts;
 using TravelApi.Models;
+using System.Collections.Generic;
 using System.Linq;
-
+using System;
 
 namespace TravelApi.Repository
 {
@@ -12,7 +13,7 @@ namespace TravelApi.Repository
         {
         }
 
-        public IQueryable<Review> GetAllReviews()
+        public IEnumerable<Review> GetAllReviews()
         {
             return FindAll()
             .OrderBy(x => x.Destination.City);

@@ -20541,6 +20541,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelClient\\Views\\Destinations\\ByRatings.cshtml",
+      "TargetPath": "Views\\Destinations\\ByRatings.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelClient\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -20571,18 +20576,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelClient\\Views\\Reviews\\Delete.cshtml",
-      "TargetPath": "Views\\Reviews\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelClient\\Views\\Destinations\\MostReviewed.cshtml",
-      "TargetPath": "Views\\Destinations\\MostReviewed.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelClient\\Views\\Account\\Login.cshtml",
       "TargetPath": "Views\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\andre\\desktop\\projects\\portfolio\\csharp\\travelapi.solution\\TravelClient\\Views\\Destinations\\ByReviews.cshtml",
+      "TargetPath": "Views\\Destinations\\ByReviews.cshtml",
       "FileKind": "mvc"
     },
     {
