@@ -13,7 +13,7 @@ namespace TravelClient.Models
         public string City { get; set; }
         public ICollection<Review> Reviews { get; set; }
         public virtual ApplicationUser User { get; set; }
-        public static List<Destination> GetDestinations()
+        public static List<Destination> GetAll()
         {
             var apiCallTask = ApiHelper.GetAll();
             var result = apiCallTask.Result;
@@ -24,7 +24,7 @@ namespace TravelClient.Models
             return destinationList;
         }
 
-        public static Destination GetDetails(int id)
+        public static Destination Get(int id)
         {
             var apiCallTask = ApiHelper.Get(id);
             var result = apiCallTask.Result;

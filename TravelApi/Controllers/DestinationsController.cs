@@ -10,7 +10,7 @@ namespace TravelApi.Controllers
     [ApiController]
     public class DestinationsController : ControllerBase
     {
-        protected IRepositoryWrapper _db;
+        private IRepositoryWrapper _db;
         public DestinationsController(IRepositoryWrapper db)
         {
             _db = db;
@@ -22,6 +22,14 @@ namespace TravelApi.Controllers
         {
             return _db.Destination.FindAll().ToList();
         }
+
+        // GET api/destinations/5
+        [HttpGet("{id}")]
+        public ActionResult<Destination> Get(int id)
+        {
+            return _db.Destination.GetDestinationById(id);
+        }
+
         //GET api/destinations/search
         [HttpGet("search")]
         public IEnumerable<Destination> Search(string city, string country)
@@ -51,13 +59,6 @@ namespace TravelApi.Controllers
             _db.Save();
         }
 
-        // GET api/destinations/5
-        [HttpGet("{id}")]
-        public ActionResult<Destination> Get(int id)
-        {
-            return _db.Destination.GetDestinationById(id);
-        }
-
         // PUT api/destinations/8
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Destination destination)
@@ -69,7 +70,7 @@ namespace TravelApi.Controllers
 
         // Delete api/destinations/5
         [HttpDelete("{id}")]
-        public void Remove(int id)
+        public void Delete(int id)
         {
             var destination = _db.Destination.GetDestinationById(id);
             _db.Destination.Delete(destination);

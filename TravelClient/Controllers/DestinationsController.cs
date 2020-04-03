@@ -18,7 +18,7 @@ namespace TravelClient.Controllers
             List<SelectListItem> countries = new List<SelectListItem>();
             List<SelectListItem> cities = new List<SelectListItem>();
 
-            IQueryable<Destination> destinations = Destination.GetDestinations().AsQueryable();
+            IQueryable<Destination> destinations = Destination.GetAll().AsQueryable();
 
             HashSet<string> countriesArray = (from c in destinations
                                               select new string(c.Country)).ToHashSet();
@@ -74,7 +74,7 @@ namespace TravelClient.Controllers
 
         public IActionResult Details(int id)
         {
-            var thisPhoto = Destination.GetDetails(id);
+            var thisPhoto = Destination.Get(id);
             return View(thisPhoto);
         }
 
@@ -98,7 +98,7 @@ namespace TravelClient.Controllers
 
         public IActionResult Edit(int id)
         {
-            var destination = Destination.GetDetails(id);
+            var destination = Destination.Get(id);
             return View(destination);
         }
 
@@ -110,7 +110,7 @@ namespace TravelClient.Controllers
         }
         public IActionResult Delete(int id)
         {
-            var destination = Destination.GetDetails(id);
+            var destination = Destination.Get(id);
             return View(destination);
         }
 

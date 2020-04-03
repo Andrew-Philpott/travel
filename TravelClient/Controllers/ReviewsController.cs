@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TravelClient.Models;
 
-namespace TravelApi.Controllers
+namespace TravelClient.Controllers
 {
     public class ReviewsController : Controller
     {
@@ -10,13 +10,13 @@ namespace TravelApi.Controllers
         }
         public IActionResult Index()
         {
-            var reviews = Review.GetReviews();
+            var reviews = Review.GetAll();
             return View(reviews);
         }
 
         public IActionResult Details(int id)
         {
-            var review = Review.GetDetails(id);
+            var review = Review.Get(id);
             return View(review);
         }
 
@@ -34,7 +34,7 @@ namespace TravelApi.Controllers
 
         public IActionResult Edit(int id)
         {
-            var review = Review.GetDetails(id);
+            var review = Review.Get(id);
             return View(review);
         }
 
@@ -47,15 +47,15 @@ namespace TravelApi.Controllers
 
         public IActionResult Delete(int id)
         {
-            var review = Review.GetDetails(id);
+            var review = Review.Get(id);
             return View(review);
         }
 
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            Review.Delete(id);
-            return RedirectToAction("Index");
-        }
+        // [HttpPost, ActionName("Delete")]
+        // public IActionResult DeleteConfirmed(int id)
+        // {
+        //     Review.Delete(id);
+        //     return RedirectToAction("Index");
+        // }
     }
 }

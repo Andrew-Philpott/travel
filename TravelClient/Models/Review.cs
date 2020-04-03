@@ -13,7 +13,27 @@ namespace TravelClient.Models
         public int DestinationId { get; set; }
         public virtual Destination Destination { get; set; }
         public virtual ApplicationUser User { get; set; }
+        public static List<Review> GetAll()
+        {
+            var apiCallTask = ApiHelper.GetReviews();
+            var result = apiCallTask.Result;
 
+            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+            List<Review> reviewsList = JsonConvert.DeserializeObject<List<Review>>(jsonResponse.ToString());
+
+            return reviewsList;
+        }
+
+        public static Review Get(int id)
+        {
+            var apiCallTask = ApiHelper.GetReview(id);
+            var result = apiCallTask.Result;
+
+            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+            Review review = JsonConvert.DeserializeObject<Review>(jsonResponse.ToString());
+
+            return review;
+        }
         public static void Post(Review review)
         {
             string jsonDestination = JsonConvert.SerializeObject(review);
@@ -31,27 +51,9 @@ namespace TravelClient.Models
             var apiCallTask = ApiHelper.Delete(id);
         }
 
-        public static Review GetDetails(int id)
-        {
-            var apiCallTask = ApiHelper.Get(id);
-            var result = apiCallTask.Result;
 
-            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-            Review review = JsonConvert.DeserializeObject<Review>(jsonResponse.ToString());
 
-            return review;
-        }
 
-        public static List<Review> GetReviews()
-        {
-            var apiCallTask = ApiHelper.GetAll();
-            var result = apiCallTask.Result;
-
-            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-            List<Review> reviewsList = JsonConvert.DeserializeObject<List<Review>>(jsonResponse.ToString());
-
-            return reviewsList;
-        }
 
         public static List<Review> GetHighestRated()
         {
