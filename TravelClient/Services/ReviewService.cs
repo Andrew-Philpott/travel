@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using RestSharp;
-using System;
 
-namespace TravelClient.Models
+
+namespace TravelClient.Services
 {
     class ReviewService
     {

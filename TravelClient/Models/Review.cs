@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TravelClient.Services;
 
 namespace TravelClient.Models
 {
@@ -15,7 +16,7 @@ namespace TravelClient.Models
         public virtual ApplicationUser User { get; set; }
         public static List<Review> GetAll()
         {
-            var apiCallTask = ApiHelper.GetReviews();
+            var apiCallTask = ReviewService.GetAll();
             var result = apiCallTask.Result;
 
             JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
@@ -26,7 +27,7 @@ namespace TravelClient.Models
 
         public static Review Get(int id)
         {
-            var apiCallTask = ApiHelper.GetReview(id);
+            var apiCallTask = ReviewService.Get(id);
             var result = apiCallTask.Result;
 
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);

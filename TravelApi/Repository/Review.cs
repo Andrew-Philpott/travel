@@ -15,8 +15,11 @@ namespace TravelApi.Repository
 
         public IEnumerable<Review> GetAllReviews()
         {
-            return FindAll()
-            .OrderBy(x => x.Destination.City);
+            return (from r in TravelApiContext.Reviews
+                    join d in TravelApiContext.Destinations
+                    on r.DestinationId equals d.DestinationId
+                    orderby d.Country descending
+                    select new Review { ReviewId = r.ReviewId, ReviewerName = r.ReviewerName, Description = r.Description, Rating = r.Rating, Destination = d });
         }
 
         public Review GetReviewById(int id)

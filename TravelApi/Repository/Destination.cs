@@ -27,25 +27,12 @@ namespace TravelApi.Repository
             }
             return query.ToList();
         }
+
         public IEnumerable<Destination> GetAllDestinations()
         {
             return FindAll()
             .OrderBy(x => x.City);
         }
-
-        // public IQueryable<Destination> GetDestinations(string city, string country)
-        // {
-        //     var destinations = this.TravelApiContext.Destinations.AsQueryable();
-        //     if (city != null)
-        //     {
-        //         destinations = destinations.Where(x => x.City == city);
-        //     }
-        //     if (country != null)
-        //     {
-        //         destinations = destinations.Where(x => x.Country == country);
-        //     }
-        //     return destinations;
-        // }
 
         public Destination GetDestinationById(int id)
         {
@@ -54,18 +41,13 @@ namespace TravelApi.Repository
 
         public IEnumerable<Destination> GetDestinationsByCityName(string city)
         {
-            return FindByCondition(destination => destination.City.Equals(city)).ToList();
+            return FindByCondition(destination => destination.City.Equals(city));
         }
 
         public IEnumerable<Destination> GetDestinationsByCountryName(string country)
         {
-            return FindByCondition(destination => destination.Country.Equals(country)).ToList();
+            return FindByCondition(destination => destination.Country.Equals(country));
         }
-
-        // public IEnumerable<Destination> GetDestinationsByCityAndCountry(string city, string country)
-        // {
-        //     return FindByCondition(destination => destination.Country.Equals(country) && destination.Country.Equals(city)).ToList();
-        // }
 
         public IEnumerable<Destination> GetDestinationsByReviews()
         {
@@ -78,7 +60,7 @@ namespace TravelApi.Repository
                     join m in mostReviewedDestination
                     on mrd.DestinationId equals m.DestinationId
                     orderby m.Count descending
-                    select new Destination { DestinationId = m.DestinationId, Country = mrd.Country, City = mrd.City }).ToList();
+                    select new Destination { DestinationId = m.DestinationId, Country = mrd.Country, City = mrd.City });
         }
 
         public IEnumerable<Destination> GetDestinationsByRatings()
@@ -91,7 +73,7 @@ namespace TravelApi.Repository
             return (from d in ratings
                     join dr in TravelApiContext.Destinations on d.DestinationId equals dr.DestinationId
                     select new Destination { DestinationId = d.DestinationId, Country = dr.Country, City = dr.City }
-                         ).ToList();
+                         );
         }
     }
 }

@@ -41,7 +41,8 @@
     @foreach(Review review in Model)
     {
       <tr>
-        <td>@Html.ActionLink($"{review.Destination.City}, {review.Destination.Country}", "Details","Destinations", new { id = review.DestinationId })</td>
+        <td>@Html.ActionLink($"{review.Destination.City}, {review.Destination.Country}", "Details","Destinations", new { id = review.
+          Destination.DestinationId })</td>
         <td>@review.Description</td>
         <td>@review.Rating</td>
         <td>@review.ReviewerName</td>

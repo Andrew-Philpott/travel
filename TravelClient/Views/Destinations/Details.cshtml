@@ -39,5 +39,5 @@
 
 <div class="footer">
   <div>@Html.ActionLink("Edit destination", "Edit", new {id = Model.DestinationId})</div>
-  <a class="btn" asp-route-id="@Model.DestinationId" asp-action="Delete">Delete this post</a>
+  <div>@Html.ActionLink("Delete destination", "Delete", new {id = Model.DestinationId})</div>
 </div>

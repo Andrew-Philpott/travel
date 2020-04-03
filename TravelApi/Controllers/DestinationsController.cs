@@ -18,9 +18,9 @@ namespace TravelApi.Controllers
 
         // GET api/destinations
         [HttpGet]
-        public IEnumerable<Destination> Get()
+        public ActionResult<IEnumerable<Destination>> Get()
         {
-            return _db.Destination.FindAll().ToList();
+            return _db.Destination.GetAllDestinations().ToList();
         }
 
         // GET api/destinations/5
@@ -32,22 +32,24 @@ namespace TravelApi.Controllers
 
         //GET api/destinations/search
         [HttpGet("search")]
-        public IEnumerable<Destination> Search(string city, string country)
+        public ActionResult<IEnumerable<Destination>> Search(string city, string country)
         {
             return _db.Destination.Query(city, country).ToList();
         }
 
+        //Get api/destinations/ratings
         [HttpGet("ratings")]
-        public IEnumerable<Destination> GetDestinationsByRatings()
+        public ActionResult<IEnumerable<Destination>> GetDestinationsByRatings()
         {
-            return _db.Destination.GetDestinationsByRatings();
+            return _db.Destination.GetDestinationsByRatings().ToList();
 
         }
 
+        //Get api/destinations/reviews
         [HttpGet("reviews")]
-        public IEnumerable<Destination> GetDestinationsByReviews()
+        public ActionResult<IEnumerable<Destination>> GetDestinationsByReviews()
         {
-            return _db.Destination.GetDestinationsByReviews();
+            return _db.Destination.GetDestinationsByReviews().ToList();
 
         }
 

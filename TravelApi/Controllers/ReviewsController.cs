@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using TravelApi.Models;
 using Contracts;
+using TravelApi.Repository;
 
 namespace TravelApi.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ReviewsController : ControllerBase
     {
@@ -16,12 +17,14 @@ namespace TravelApi.Controllers
             _db = db;
         }
 
+        // GET api/reviews
         [HttpGet]
         public IEnumerable<Review> Get()
         {
-            return _db.Review.FindAll().ToList();
+            return _db.Review.GetAllReviews();
         }
 
+        // GET api/reviews/5
         [HttpGet("{id}")]
         public ActionResult<Review> Get(int id)
         {

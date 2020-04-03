@@ -11,6 +11,11 @@ namespace TravelApi
 {
     public static class ServiceExtensions
     {
+        public static void ConfigureMySqlContext(this IServiceCollection services, IConfiguration config)
+        {
+            var connectionString = config["ConnectionStrings:DefaultConnection"];
+            services.AddDbContext<TravelApiContext>(o => o.UseMySql(connectionString));
+        }
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
         {
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
@@ -28,10 +33,10 @@ namespace TravelApi
         {
             services.AddControllers();
             services.ConfigureRepositoryWrapper();
-
-            services.AddDbContext<TravelApiContext>(options =>
-            options.UseMySql(
-                Configuration.GetConnectionString("DefaultConnection")));
+            services.ConfigureMySqlContext(Configuration);
+            // services.AddDbContext<TravelApiContext>(options =>
+            // options.UseMySql(
+            //     Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<TravelApiContext>()
             .AddDefaultTokenProviders();
