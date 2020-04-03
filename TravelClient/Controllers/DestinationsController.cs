@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
 
 namespace TravelClient.Controllers
 {
@@ -114,11 +115,11 @@ namespace TravelClient.Controllers
             return View(destination);
         }
 
-        // [HttpPost]
-        // public IActionResult DeleteConfirmed(int id)
-        // {
-        //     Destination.Delete(id);
-        //     return RedirectToAction("Index");
-        // }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            Destination.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

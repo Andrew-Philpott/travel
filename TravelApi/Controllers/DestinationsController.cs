@@ -72,7 +72,7 @@ namespace TravelApi.Controllers
 
         // Delete api/destinations/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeleteDestination(int id)
         {
             var destination = _db.Destination.GetDestinationById(id);
             _db.Destination.Delete(destination);
